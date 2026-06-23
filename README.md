@@ -27,7 +27,10 @@ src/sovereign_domain.apl      domain boundary encoding
 src/omega_isolation.apl       correct omega isolation, ω < Ω
 src/zeroproof_substrate.apl   Zeroproof substrate, hash and factorization checks
 src/morphism_composition.apl  correct f∘g order
+src/intercol.apl              sovereign domain orthogonality protocol
 src/run_all.apl               APL demo runner
+docs/index.html               INTERCOL browser visualizer for GitHub Pages
+docs/resonance.html           Resonance Machine browser visualizer
 ```
 
 ## Public-Code Evidence Checked
@@ -178,4 +181,3 @@ AN = correct executable APL proof substrate requested.
 KI = grounded in public/local audit source paths listed above.
 
 ME = no hidden claims; every correction is represented as executable APL conditions.
-

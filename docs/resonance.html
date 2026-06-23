@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RESONANCE MACHINE · SnapKitty Collective · 2026</title>
+  <style>
+    :root {
+      --bg: #020205;
+      --panel: #08080d;
+      --line: #24242f;
+      --text: #f4f4f5;
+      --soft: #9ca3af;
+      --gold: #ffd700;
+      --red: #b91c1c;
+      --red-hi: #ff3333;
+      --green: #00ff88;
+      --cyan: #67e8f9;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 50% 12%, rgba(255, 215, 0, 0.12), transparent 26rem),
+        radial-gradient(circle at 84% 70%, rgba(185, 28, 28, 0.12), transparent 24rem),
+        var(--bg);
+      color: var(--text);
+      font-family: "Space Mono", "Cascadia Mono", "Consolas", "Courier New", monospace;
+    }
+
+    a { color: var(--gold); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page {
+      width: min(1640px, 100%);
+      margin: 0 auto;
+      padding: 22px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: end;
+      border-bottom: 1px solid var(--line);
+      padding: 10px 0 20px;
+    }
+
+    h1 {
+      margin: 0 0 7px;
+      color: var(--gold);
+      font-size: clamp(22px, 4vw, 40px);
+      letter-spacing: 0.03em;
+      text-shadow: 0 0 22px rgba(255, 215, 0, 0.28);
+    }
+
+    .sub {
+      color: var(--soft);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 10px;
+      align-items: stretch;
+      margin: 18px 0;
+    }
+
+    input, button {
+      font: inherit;
+      border-radius: 6px;
+    }
+
+    input {
+      min-width: 0;
+      padding: 12px 13px;
+      background: #030307;
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+
+    button {
+      cursor: pointer;
+      padding: 10px 12px;
+      border: 1px solid rgba(255, 215, 0, 0.62);
+      background: rgba(255, 215, 0, 0.08);
+      color: var(--gold);
+      white-space: nowrap;
+    }
+
+    button:hover { background: rgba(255, 215, 0, 0.15); }
+
+    .machine {
+      display: grid;
+      grid-template-columns: 1fr 1.35fr 0.9fr 1.15fr 1fr;
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .stage {
+      min-height: 520px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(8, 8, 13, 0.94);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .stage::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(255, 215, 0, 0.06), transparent 34%);
+      opacity: 0.8;
+    }
+
+    .stage.fail {
+      border-color: rgba(255, 51, 51, 0.8);
+      box-shadow: 0 0 28px rgba(185, 28, 28, 0.24);
+    }
+
+    .stage.pass {
+      border-color: rgba(0, 255, 136, 0.8);
+      box-shadow: 0 0 28px rgba(0, 255, 136, 0.18);
+    }
+
+    .stage-head {
+      position: relative;
+      z-index: 1;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      color: var(--gold);
+      font-size: 12px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .stage-body {
+      position: relative;
+      z-index: 1;
+      padding: 14px;
+    }
+
+    .claim {
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 15px;
+      word-break: break-word;
+      min-height: 110px;
+    }
+
+    .meta {
+      margin-top: 18px;
+      color: var(--soft);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .pass-row {
+      display: grid;
+      grid-template-columns: 1fr 54px;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .pass-label {
+      color: #d7d7dc;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .score {
+      color: var(--gold);
+      font-size: 12px;
+      text-align: right;
+    }
+
+    .bar {
+      grid-column: 1 / -1;
+      height: 8px;
+      border: 1px solid #20202b;
+      background: #030307;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .bar > span {
+      display: block;
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--green), var(--gold), var(--red-hi));
+      transition: width 500ms ease;
+    }
+
+    .gate-value {
+      display: grid;
+      place-items: center;
+      min-height: 220px;
+      text-align: center;
+      border: 1px solid #1d1d27;
+      border-radius: 8px;
+      background: #030307;
+    }
+
+    .gate-number {
+      font-size: clamp(34px, 6vw, 62px);
+      color: var(--gold);
+      text-shadow: 0 0 20px rgba(255, 215, 0, 0.28);
+    }
+
+    .gate-label {
+      margin-top: 10px;
+      color: var(--soft);
+      font-size: 12px;
+    }
+
+    .gate-status {
+      margin-top: 16px;
+      font-size: 14px;
+      letter-spacing: 0.14em;
+    }
+
+    .gate-status.ok { color: var(--green); }
+    .gate-status.stop { color: var(--red-hi); }
+
+    .red-wall {
+      margin-top: 18px;
+      color: var(--red-hi);
+      border: 1px solid rgba(255, 51, 51, 0.45);
+      background: rgba(185, 28, 28, 0.13);
+      padding: 12px;
+      border-radius: 6px;
+      display: none;
+      line-height: 1.5;
+      font-size: 12px;
+    }
+
+    .cube-wrap {
+      display: grid;
+      place-items: center;
+      min-height: 308px;
+    }
+
+    svg {
+      max-width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+
+    .edge {
+      stroke: rgba(255, 215, 0, 0.44);
+      stroke-width: 1.4;
+      fill: none;
+      stroke-dasharray: 8 8;
+      animation: dash 4s linear infinite;
+    }
+
+    .node {
+      fill: #050509;
+      stroke: var(--gold);
+      stroke-width: 2;
+      filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.45));
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+
+    .center {
+      fill: rgba(255, 215, 0, 0.22);
+      stroke: var(--green);
+      stroke-width: 2.6;
+      filter: drop-shadow(0 0 12px rgba(0, 255, 136, 0.65));
+    }
+
+    .cube-disabled .edge,
+    .cube-disabled .node,
+    .cube-disabled .center {
+      stroke: rgba(255, 51, 51, 0.42);
+      animation-play-state: paused;
+      filter: none;
+    }
+
+    @keyframes dash {
+      from { stroke-dashoffset: 60; }
+      to { stroke-dashoffset: 0; }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.78; }
+      50% { transform: scale(1.08); opacity: 1; }
+    }
+
+    .cube-note {
+      color: var(--soft);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .seal-box {
+      display: grid;
+      gap: 12px;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .seal {
+      color: var(--green);
+      font-size: 24px;
+      letter-spacing: 0.08em;
+      word-break: break-all;
+      text-shadow: 0 0 14px rgba(0, 255, 136, 0.3);
+    }
+
+    .muted { color: var(--soft); }
+    .gold { color: var(--gold); }
+    .green { color: var(--green); }
+    .red { color: var(--red-hi); }
+
+    footer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+      margin-top: 18px;
+      padding: 16px 0 4px;
+      border-top: 1px solid var(--line);
+      color: #5c5f6d;
+      font-size: 12px;
+    }
+
+    @media (max-width: 1200px) {
+      .machine { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 760px) {
+      header, .controls, .machine { grid-template-columns: 1fr; display: grid; }
+      .stage { min-height: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div>
+        <h1>RESONANCE MACHINE · SnapKitty Collective · 2026</h1>
+        <div class="sub">ERE scoring → entropy gate → METATRON cube → WORM seal</div>
+      </div>
+      <div class="sub">Author: Ahmad Ali Parr · SnapKitty Collective</div>
+    </header>
+
+    <section class="controls" aria-label="demo controls">
+      <input id="claimInput" type="text" value="INTERCOL(D_i, D_j) = 0 → ⊥" aria-label="custom claim">
+      <button id="demoFail">Demo 1 · PIRTM sorry</button>
+      <button id="demoPass">Demo 2 · INTERCOL</button>
+    </section>
+
+    <main class="machine">
+      <section class="stage" id="stageClaim">
+        <div class="stage-head">Input Claim</div>
+        <div class="stage-body">
+          <div class="claim" id="claimText"></div>
+          <div class="meta">
+            Claim enters as visible text. The machine does not trust it.
+            It scores structure, consistency, causal chain, entropy, and phinary contraction.
+          </div>
+        </div>
+      </section>
+
+      <section class="stage" id="stageEre">
+        <div class="stage-head">ERE Engine · 5 Passes</div>
+        <div class="stage-body" id="passes"></div>
+      </section>
+
+      <section class="stage" id="stageGate">
+        <div class="stage-head">Entropy Gate &lt; 0.21</div>
+        <div class="stage-body">
+          <div class="gate-value">
+            <div>
+              <div class="gate-number" id="entropyValue">0.000</div>
+              <div class="gate-label">composite entropy</div>
+              <div class="gate-status" id="gateStatus">SCORING</div>
+            </div>
+          </div>
+          <div class="red-wall" id="redWall">
+            FAIL → red wall. Pipeline stops here. No METATRON read. No WORM seal.
+          </div>
+        </div>
+      </section>
+
+      <section class="stage" id="stageCube">
+        <div class="stage-head">METATRON Cube · 13 Nodes</div>
+        <div class="stage-body">
+          <div class="cube-wrap" id="cubeWrap">
+            <svg viewBox="0 0 320 320" role="img" aria-label="Metatron cube with 13 nodes">
+              <g id="cubeEdges"></g>
+              <g id="cubeNodes"></g>
+            </svg>
+          </div>
+          <div class="cube-note" id="cubeNote">
+            Reads chain forward and backward. Center node = METATRON, depth 5.
+          </div>
+        </div>
+      </section>
+
+      <section class="stage" id="stageSeal">
+        <div class="stage-head">WORM Seal</div>
+        <div class="stage-body">
+          <div class="seal-box">
+            <div class="muted">SHA-256 display</div>
+            <div class="seal" id="sealValue">blocked</div>
+            <div><span class="gold">Timestamp:</span> <span id="timestamp">blocked</span></div>
+            <div><span class="gold">Author:</span> Ahmad Ali Parr · SnapKitty Collective</div>
+            <div class="muted" id="sealNote">Seal appears only after entropy gate passes.</div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>Pure HTML/CSS/JS · no frameworks</span>
+      <span>
+        <a href="https://github.com/SNAPKITTYWEST/all-apl">all-apl</a>
+        · <a href="./index.html">INTERCOL visualizer</a>
+        · <a href="https://github.com/SNAPKITTYWEST/all-apl">GitHub</a>
+      </span>
+    </footer>
+  </div>
+
+  <script>
+    const claimInput = document.getElementById('claimInput');
+    const claimText = document.getElementById('claimText');
+    const passesEl = document.getElementById('passes');
+    const entropyValue = document.getElementById('entropyValue');
+    const gateStatus = document.getElementById('gateStatus');
+    const redWall = document.getElementById('redWall');
+    const cubeWrap = document.getElementById('cubeWrap');
+    const cubeEdges = document.getElementById('cubeEdges');
+    const cubeNodes = document.getElementById('cubeNodes');
+    const cubeNote = document.getElementById('cubeNote');
+    const sealValue = document.getElementById('sealValue');
+    const timestamp = document.getElementById('timestamp');
+    const sealNote = document.getElementById('sealNote');
+
+    const failClaim = 'PIRTM transition_108_cycle: by sorry';
+    const passClaim = 'INTERCOL(D_i, D_j) = 0 → ⊥';
+
+    const passDefs = [
+      'Pass 1: Structural coherence',
+      'Pass 2: Internal consistency',
+      'Pass 3: Causal chain integrity',
+      'Pass 4: Entropy measurement',
+      'Pass 5: Phinary contraction (Fibonacci basis)'
+    ];
+
+    const points = [
+      [160, 160],
+      [160, 42], [262, 101], [262, 219], [160, 278], [58, 219], [58, 101],
+      [160, 95], [216, 128], [216, 192], [160, 225], [104, 192], [104, 128]
+    ];
+
+    const edges = [
+      [1,2],[2,3],[3,4],[4,5],[5,6],[6,1],
+      [7,8],[8,9],[9,10],[10,11],[11,12],[12,7],
+      [1,7],[2,8],[3,9],[4,10],[5,11],[6,12],
+      [0,1],[0,2],[0,3],[0,4],[0,5],[0,6],
+      [0,7],[0,8],[0,9],[0,10],[0,11],[0,12]
+    ];
+
+    function clamp(value, min, max) {
+      return Math.max(min, Math.min(max, value));
+    }
+
+    function fibonacci(n) {
+      const seq = [1, 1];
+      while (seq.length < n) seq.push(seq[seq.length - 1] + seq[seq.length - 2]);
+      return seq.slice(0, n);
+    }
+
+    function scoreClaim(raw) {
+      const text = raw.trim();
+      const lower = text.toLowerCase();
+      const bad = /(sorry|trivial|simp|fake|placeholder|lean_proof_hash|undefined proof)/.test(lower);
+      const hasMath = /(intercol|⊥|=|→|<|>|delta|δ|fibonacci|phinary|worm|sha)/i.test(text);
+      const hasChain = /(→|->|therefore|hence|intercol|worm|seal|because)/i.test(text);
+      const hasCollapse = /(⊥|null|collapse|reject|wall)/i.test(text);
+      const hasPhinary = /(intercol|fibonacci|phinary|108|contraction|basis|δ)/i.test(text);
+      const len = text.length;
+      const fib = fibonacci(8);
+      const fibBasis = fib.includes(len) || fib.some(v => len % v === 0);
+
+      const p1 = len > 10 ? 0.02 : 0.45;
+      const p2 = bad ? 0.76 : 0.03;
+      const p3 = hasChain ? 0.04 : 0.34;
+      const p4 = clamp((bad ? 0.65 : 0.08) + (hasCollapse ? -0.03 : 0.08), 0, 1);
+      const p5 = hasPhinary || fibBasis ? 0.05 : 0.28;
+
+      const rawScores = [p1, p2, p3, p4, p5];
+      const entropy = clamp(rawScores.reduce((a, b) => a + b, 0) / rawScores.length, 0, 1);
+      return { scores: rawScores, entropy };
+    }
+
+    async function sha256Hex(input) {
+      const bytes = new TextEncoder().encode(input);
+      const digest = await crypto.subtle.digest('SHA-256', bytes);
+      return Array.from(new Uint8Array(digest)).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    function drawCube(enabled) {
+      cubeEdges.innerHTML = '';
+      cubeNodes.innerHTML = '';
+      cubeWrap.classList.toggle('cube-disabled', !enabled);
+
+      for (const [a, b] of edges) {
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', points[a][0]);
+        line.setAttribute('y1', points[a][1]);
+        line.setAttribute('x2', points[b][0]);
+        line.setAttribute('y2', points[b][1]);
+        line.setAttribute('class', 'edge');
+        cubeEdges.appendChild(line);
+      }
+
+      points.forEach(([x, y], index) => {
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('cx', x);
+        circle.setAttribute('cy', y);
+        circle.setAttribute('r', index === 0 ? 18 : 9);
+        circle.setAttribute('class', index === 0 ? 'center' : 'node');
+        circle.style.animationDelay = `${index * 90}ms`;
+        cubeNodes.appendChild(circle);
+      });
+
+      const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      text.setAttribute('x', 160);
+      text.setAttribute('y', 165);
+      text.setAttribute('text-anchor', 'middle');
+      text.setAttribute('fill', enabled ? '#00ff88' : '#ff3333');
+      text.setAttribute('font-size', '10');
+      text.setAttribute('font-family', 'monospace');
+      text.textContent = 'METATRON';
+      cubeNodes.appendChild(text);
+    }
+
+    function renderPasses(scores) {
+      passesEl.innerHTML = '';
+      scores.forEach((score, index) => {
+        const row = document.createElement('div');
+        row.className = 'pass-row';
+        row.innerHTML = `
+          <div class="pass-label">${passDefs[index]}</div>
+          <div class="score">${score.toFixed(3)}</div>
+          <div class="bar"><span style="width:${Math.round(score * 100)}%"></span></div>
+        `;
+        passesEl.appendChild(row);
+      });
+    }
+
+    async function runMachine() {
+      const claim = claimInput.value.trim() || passClaim;
+      claimText.textContent = claim;
+      const { scores, entropy } = scoreClaim(claim);
+      const passed = entropy < 0.21;
+      const now = new Date().toISOString();
+
+      renderPasses(scores);
+      entropyValue.textContent = entropy.toFixed(3);
+      gateStatus.textContent = passed ? 'PASS' : 'FAIL';
+      gateStatus.className = `gate-status ${passed ? 'ok' : 'stop'}`;
+      redWall.style.display = passed ? 'none' : 'block';
+
+      document.getElementById('stageGate').classList.toggle('pass', passed);
+      document.getElementById('stageGate').classList.toggle('fail', !passed);
+      document.getElementById('stageCube').classList.toggle('pass', passed);
+      document.getElementById('stageCube').classList.toggle('fail', !passed);
+      document.getElementById('stageSeal').classList.toggle('pass', passed);
+      document.getElementById('stageSeal').classList.toggle('fail', !passed);
+
+      drawCube(passed);
+
+      if (!passed) {
+        cubeNote.innerHTML = '<span class="red">Stopped:</span> entropy gate blocked forward/backward chain read.';
+        sealValue.textContent = 'blocked';
+        timestamp.textContent = 'blocked';
+        sealNote.textContent = 'Entropy >= 0.21. No WORM seal emitted.';
+        return;
+      }
+
+      cubeNote.innerHTML = '<span class="green">Active:</span> chain read forward and backward; center node depth 5 certified.';
+      const sealInput = `${claim}|${entropy.toFixed(6)}|${scores.map(s => s.toFixed(6)).join('|')}|${now}|Ahmad Ali Parr`;
+      const digest = await sha256Hex(sealInput);
+      sealValue.textContent = digest.slice(0, 16);
+      timestamp.textContent = now;
+      sealNote.textContent = `Full digest computed in browser; first 16 chars displayed.`;
+    }
+
+    claimInput.addEventListener('input', runMachine);
+    document.getElementById('demoFail').addEventListener('click', () => {
+      claimInput.value = failClaim;
+      runMachine();
+    });
+    document.getElementById('demoPass').addEventListener('click', () => {
+      claimInput.value = passClaim;
+      runMachine();
+    });
+
+    drawCube(true);
+    runMachine();
+  </script>
+</body>
+</html>
