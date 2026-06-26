@@ -181,3 +181,5 @@ AN = correct executable APL proof substrate requested.
 KI = grounded in public/local audit source paths listed above.
 
 ME = no hidden claims; every correction is represented as executable APL conditions.
+
+![](https://sovereign-analytics.snapkittywest.workers.dev/canary/all-apl)
