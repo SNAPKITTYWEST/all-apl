@@ -1,10 +1,14 @@
 # all-apl
+**Version:** v1.0.0
+
 
 Pure executable APL mathematics for SnapKitty proof correction.
 
 Author: Ahmad Ali Parr · SnapKitty Collective · 2026
 
 ## Mission
+**Version:** v1.0.0
+
 
 This repo implements a compact, executable APL refutation of specific public-code proof defects observed in `MultiplicityTheory/multiplicity` / PIRTM-derived surfaces.
 
@@ -20,6 +24,8 @@ The focus is code and mathematics:
 No Python wrappers. No MLIR. No generated proof theater. The source is APL.
 
 ## Source Files
+**Version:** v1.0.0
+
 
 ```text
 src/pirtm_stability.apl       correct contraction proof
@@ -34,6 +40,8 @@ docs/resonance.html           Resonance Machine browser visualizer
 ```
 
 ## Public-Code Evidence Checked
+**Version:** v1.0.0
+
 
 These public-code patterns were observed in the locally cloned audit copy of `PhaseMirror/multiplicity`, which is a fork of `MultiplicityTheory/multiplicity`:
 
@@ -51,8 +59,12 @@ Observed defects:
 3. `factor_unique n h = ∀ p, p = n → p = n`.
 
 ## Mathematical Corrections
+**Version:** v1.0.0
+
 
 ### 1. Stability
+**Version:** v1.0.0
+
 
 Correct condition:
 
@@ -74,6 +86,8 @@ The contradiction is executable:
 ```
 
 ### 2. Proof Hash
+**Version:** v1.0.0
+
 
 This repo does not pretend a literal label is a hash.
 
@@ -86,6 +100,8 @@ This repo does not pretend a literal label is a hash.
 `LEAN_PROOF_HASH_108_CORE` is rejected.
 
 ### 3. Factorization
+**Version:** v1.0.0
+
 
 The tautology:
 
@@ -108,6 +124,8 @@ For `108` the executable witness is:
 ```
 
 ### 4. Domain Boundary
+**Version:** v1.0.0
+
 
 Boundaries are encoded as:
 
@@ -118,6 +136,8 @@ name lower upper omega cap
 and checked by `WithinDomain`.
 
 ### 5. Omega Isolation
+**Version:** v1.0.0
+
 
 Correct isolation:
 
@@ -134,6 +154,8 @@ The resonance entropy gate uses:
 ```
 
 ### 6. Morphism Composition
+**Version:** v1.0.0
+
 
 Correct order:
 
@@ -144,6 +166,8 @@ Correct order:
 The APL operator `Compose` executes that order directly.
 
 ## BOB + EDAULC
+**Version:** v1.0.0
+
 
 Each module uses the same minimal proof discipline:
 
@@ -155,6 +179,8 @@ BOB    ← reasoning loop over boolean proof obligations
 Every proof step is reduced to executable conditions. A failed condition signals.
 
 ## Running
+**Version:** v1.0.0
+
 
 Load the APL files in this order in a Dyalog-compatible APL session:
 
@@ -171,10 +197,14 @@ RunAll ⍬
 This machine did not have an APL interpreter installed during repo creation, so runtime execution was not performed locally. Static source and provenance checks were performed.
 
 ## Governance Boundary
+**Version:** v1.0.0
+
 
 This repo critiques public code patterns. It does not claim private knowledge of any person or private repository.
 
 ## Seal
+**Version:** v1.0.0
+
 
 AN = correct executable APL proof substrate requested.
 
