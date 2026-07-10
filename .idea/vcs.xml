@@ -4,6 +4,7 @@
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/agentos_source" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mathlib5-spec-mcp" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/mathrosetta_source" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/snapkitty-gitbucket" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/snapkitty-shell" vcs="Git" />
