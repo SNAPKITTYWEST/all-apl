@@ -1,30 +1,15 @@
 [workspace]
-resolver = "2"
 members = [
     "layers/axiom-proof",
     "layers/prism-skills",
     "layers/pnp-attack",
-    "layers/collatz/engine",
-    "layers/symbolic",
-    "layers/scripting/rexx-interp",
+    "layers/collatz",
+    "layers/math-skills",
     "layers/sorryhunter",
+    "layers/rexx-interp"
 ]
 
-[workspace.package]
+[package]
+name = "mathlib5"
 version = "0.1.0"
 edition = "2021"
-authors = ["Ahmad Ali Parr"]
-license = "Apache-2.0"
-
-[workspace.dependencies]
-sha2 = "0.10"
-serde = { version = "1.0", features = ["derive"] }
-serde_json = "1.0"
-serde-wasm-bindgen = "0.6"
-rayon = "1.8"
-wasm-bindgen = "0.2"
-hex = "0.4"
-walkdir = "2.5"
-regex = "1.10"
-anyhow = "1.0"
-tokio = { version = "1.40", features = ["full"] }

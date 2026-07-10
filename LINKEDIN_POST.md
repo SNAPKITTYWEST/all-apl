@@ -1,5 +1,16 @@
 # LinkedIn Post Draft
 
+## Status
+
+This draft reflects an earlier all-APL framing of the project.
+It is historical messaging, not a current architectural summary of the full repository.
+
+For the current repo map, use:
+
+- [README.md](C:/Users/jessi/Desktop/all-apl/README.md)
+- [EXECUTION_TOPOLOGY.md](C:/Users/jessi/Desktop/all-apl/EXECUTION_TOPOLOGY.md)
+- [CORE_EXPERIMENT_MAP.md](C:/Users/jessi/Desktop/all-apl/CORE_EXPERIMENT_MAP.md)
+
 I built `SNAPKITTYWEST/all-apl`: a pure APL executable-math refutation of three public PIRTM / Multiplicity proof defects.
 
 No Python wrapper.
@@ -66,4 +77,3 @@ If the hash is real, it is not a slogan.
 Repo: `SNAPKITTYWEST/all-apl`
 
 Author: Ahmad Ali Parr · SnapKitty Collective · 2026
-

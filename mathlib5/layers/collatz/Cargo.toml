@@ -1,3 +1,0 @@
-[workspace]
-members = ["engine", "api"]
-resolver = "2"

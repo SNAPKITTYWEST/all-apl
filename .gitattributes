@@ -1,0 +1,42 @@
+# GitHub Linguist Configuration
+# This file controls how GitHub detects languages in the repository.
+
+# Hide legacy code from statistics
+legacy/** linguist-vendored
+snapkitty-gitbucket/** linguist-vendored
+
+# Hide documentation from statistics
+.github/** linguist-documentation
+.idea/** linguist-documentation
+.worm/** linguist-documentation
+docs/** linguist-documentation
+ARCHITECTURE.md linguist-documentation
+HANDOFF_PACKET.md linguist-documentation
+LINKEDIN_POST.md linguist-documentation
+WORM_SEAL.md linguist-documentation
+README.md linguist-documentation
+LICENSE linguist-documentation
+
+# Hide build system files from statistics
+Makefile linguist-generated
+*.mk linguist-generated
+WORKSPACE.bazel linguist-generated
+BUILD.bazel linguist-generated
+*.nix linguist-generated
+flake.nix linguist-generated
+shell.nix linguist-generated
+Cargo.lock linguist-generated
+
+# Ensure core languages are highlighted and counted
+*.hs linguist-detectable
+*.lean linguist-detectable
+*.rs linguist-detectable
+*.apl linguist-detectable
+*.mjs linguist-detectable
+
+# Specific overrides if needed
+agentos_source/** linguist-detectable
+mathlib5-ffi-bridge/** linguist-detectable
+mathrosetta_source/** linguist-detectable
+mathlib5/** linguist-detectable
+snapkitty-shell/** linguist-detectable

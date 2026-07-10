@@ -1,36 +1,47 @@
-{-# LANGUAGE OverloadedStrings #-}
-
-module Parser where
+module MathLib5.Parser where
 
 import Text.Megaparsec
 import Text.Megaparsec.Char
-import qualified Text.Megaparsec.Char.Lexer as L
 import Data.Text (Text)
 import qualified Data.Text as T
 import Data.Void
-import AST (SExpr(..))
 
 type Parser = Parsec Void Text
 
-parseAPL :: Text -> Either (ParseErrorBundle Text Void) SExpr
-parseAPL = parse (space *> pSExpr <* eof) ""
+data Expr
+  = IntVal Int
+  | FloatVal Double
+  | Var String
+  | Lambda [String] Expr
+  | App Expr [Expr]
+  | Prim String [Expr]
+  deriving (Show, Eq)
 
-pSExpr :: Parser SExpr
-pSExpr = pList <|> pString <|> pNumber <|> pAtom <|> pSymbol
+parseAPL :: Text -> Either (ParseErrorBundle Text Void) Expr
+parseAPL = parse (space *> pExpr <* eof) ""
 
-pString :: Parser SExpr
-pString = String . T.pack <$> (char '"' *> manyTill L.charLiteral (char '"'))
+pExpr :: Parser Expr
+pExpr = pLambda <|> pApp <|> pTerm
 
-pAtom :: Parser SExpr
-pAtom = Atom . T.pack <$> some (letterChar <|> char '_')
+pLambda :: Parser Expr
+pLambda = do
+  _ <- char '{'
+  space
+  -- Simple APL style: implicit omega or explicit args
+  e <- pExpr
+  space
+  _ <- char '}'
+  return $ Lambda ["⍵"] e
 
-pSymbol :: Parser SExpr
-pSymbol = Atom . T.pack <$> some (oneOf ("⍳⍴⍝+/*-÷=≠<>≤≥" :: String))
+pApp :: Parser Expr
+pApp = do
+  t <- pTerm
+  ts <- many pTerm
+  if null ts then return t else return (App t ts)
 
-pNumber :: Parser SExpr
-pNumber = Number . read <$> some (digitChar <|> char '.')
-
-pList :: Parser SExpr
-pList = between (char '(') (char ')') $
-  List <$> (space *> pSExpr `sepEndBy` space)
-  <|> between (char '{') (char '}') (List . (Atom "lambda" :) <$> (space *> pSExpr `sepEndBy` space))
+pTerm :: Parser Expr
+pTerm = choice
+  [ IntVal . read <$> some digitChar
+  , Var <$> some letterChar
+  , between (char '(') (char ')') pExpr
+  ]

@@ -1,7 +1,0 @@
-# Test proof: P(a), ~P(x)|Q(x), ~Q(a) ⊢ □
-# Format: ID LITERAL... [from ID1 ID2]
-0 P(a)
-1 ~P(X) Q(X)
-2 ~Q(a)
-3 Q(a) from 0 1
-4 from 3 2

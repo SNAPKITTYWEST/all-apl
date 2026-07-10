@@ -185,8 +185,8 @@ G3: 1/φ = φ - 1      (self-referential — unique to φ alone)
 
 **Fibonacci Contraction Certificate:** Successive Fibonacci ratios converge to φ from alternating sides. Their reciprocals converge to `1/φ` at rate `φ^(-N)`. The entropy gate threshold `0.21` derives from this convergence.
 
-**Lean 4 proof:** `lean/GoldilocksTheorem.lean` — 0 sorry, Mathlib-compatible.  
-**APL proof:** `apl/Goldilocks.apl` — executable, BOB-certified, 7ms.
+**Lean 4 proof:** referenced as `lean/GoldilocksTheorem.lean` in the original disclosure set, but not present in this working tree.  
+**APL proof:** referenced as `apl/Goldilocks.apl` in the original disclosure set, but not present in this working tree.
 
 ---
 
@@ -286,17 +286,17 @@ all-apl/
 ├── src/pirtm_stability.apl       ← PIRTM contradiction proof
 ├── src/sovereign_domain.apl      ← Domain boundary encoding
 ├── src/transforms.apl            ← FCC · Entropy · Trust · Resonance
-├── src/goldilocks.apl            ← Goldilocks theorem + Ryan refutation
+├── src/goldilocks.apl            ← Historical disclosure reference; artifact not present in this working tree
 ├── docs/INTERCOL.md              ← Formal specification with provenance
 ├── docs/PUBLIC_CODE_EVIDENCE.md  ← Legal evidence trail
 ├── docs/PRIOR_ART_DISCLOSURE.md  ← This document
-├── ARCHITECTURE.md               ← Full system architecture
-├── WORM_SEAL.md                  ← Tree hash seal
+├── ARCHITECTURE.md               ← Root architecture note; current versions distinguish live vs historical material
+├── WORM_SEAL.md                  ← Historical tree hash seal record
 └── THE_333.ipynb                 ← Executable proof notebook
 
 bob-reasoning-engine/
-├── lean/GoldilocksTheorem.lean   ← Lean 4 formal proof, 0 sorry
-├── apl/Goldilocks.apl            ← APL executable proof
+├── lean/GoldilocksTheorem.lean   ← Historical disclosure reference; artifact not present in this working tree
+├── apl/Goldilocks.apl            ← Historical disclosure reference; artifact not present in this working tree
 ├── src/sovereign-bridge.mjs      ← Lean + APL + WORM pipeline
 ├── src/knowledge-chunks.mjs      ← 20 sealed knowledge chunks
 └── THE_333.ipynb                 ← Executable sovereign math notebook

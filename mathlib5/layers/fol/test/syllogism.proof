@@ -1,9 +1,0 @@
-# Syllogism: ∀x(P(x)→Q(x)), ∀x(Q(x)→R(x)), P(a), ¬R(a) ⊢ □
-# Axioms: ~P(X)|Q(X), ~Q(Y)|R(Y), P(a), ~R(a)
-0 ~P(X) Q(X)
-1 ~Q(Y) R(Y)
-2 P(a)
-3 ~R(a)
-4 Q(a) from 0 2
-5 R(a) from 1 4
-6 from 5 3

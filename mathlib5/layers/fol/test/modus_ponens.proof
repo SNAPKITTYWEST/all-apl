@@ -1,7 +1,0 @@
-# Modus Ponens: P→Q, P, ¬Q ⊢ □
-# Axioms: ~P|Q, P, ~Q
-0 ~P Q
-1 P
-2 ~Q
-3 Q from 0 1
-4 from 3 2

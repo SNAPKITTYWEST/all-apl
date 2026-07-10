@@ -1,20 +1,16 @@
-{-# LANGUAGE DeriveGeneric #-}
-{-# LANGUAGE OverloadedStrings #-}
-
-module AST where
-
-import GHC.Generics (Generic)
-import Data.Aeson (ToJSON, FromJSON)
-import Data.Hashable (Hashable)
-import Data.Text (Text)
+module MathLib5.AST where
 
 data SExpr
-  = Atom Text
-  | List [SExpr]
-  | Number Double
-  | String Text
-  deriving (Show, Eq, Generic)
+  = SInt Int
+  | SFloat Double
+  | SString String
+  | SSymbol String
+  | SList [SExpr]
+  deriving (Show, Eq)
 
-instance ToJSON SExpr
-instance FromJSON SExpr
-instance Hashable SExpr
+serialize :: SExpr -> String
+serialize (SInt i) = show i
+serialize (SFloat f) = show f
+serialize (SString s) = show s
+serialize (SSymbol s) = s
+serialize (SList xs) = "(" ++ unwords (map serialize xs) ++ ")"

@@ -1,88 +1,99 @@
-# MATHLIB5
+# MATHLIB5 — Verified Symbolic Compute Pipeline (VSCP)
+
 **The Unified Symbolic Compute Stack**
 
-> **Notice:** This repository has been consolidated to focus on **MATHLIB5**, a compiler-research-grade verified symbolic compute pipeline. The legacy components are now subordinated to this unified architecture.
-
-## The Massive Module: `mathlib5/`
-The core of this repository is the `mathlib5` module. It is a comprehensive symbolic mathematics engine where:
-- **APL** provides mathematical expression and concise notation.
-- **Typed functional languages** (Haskell) provide safety guarantees.
-- **Theorem provers** (Lean 4) validate transformations and proofs.
-- **Low-level backends** (C99/Rust/LLVM) execute verified kernels.
-
-This architecture ensures a **verified symbolic compute pipeline** from notation to silicon.
-
----
+> **Notice:** The active code in this repository is distributed across the root modules and preserved source trees such as `agentos_source/`, `mathlib5-ffi-bridge/`, and `mathrosetta_source/`. The `mathlib5/` subdirectory is not currently the live implementation surface.
 
 ## Architecture at a Glance
 MATHLIB5 employs a **Verified Symbolic Compute Pipeline** (VSCP):
 
+```
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                              MATHLIB5 VSCP — FULL STACK                                 │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                         │
+│  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌────────────────────────┐   │
+│  │    APL      │───▶│  S-Expr IR  │───▶│   Liquid    │───▶│      Lean 4            │   │
+│  │  Frontend   │    │   (S-Expr)  │    │   Haskell   │    │   Theorems             │   │
+│  │  (Megaparsec)│   │  Canonical  │    │  Refinement │    │  (No Sorries)          │   │
+│  └─────────────┘    └─────────────┘    └─────────────┘    └───────────┬────────────┘   │
+│                                                                         │                │
+│                                                                         ▼                │
+│  ┌─────────────────────────────────────────────────────────────────────────────────┐    │
+│  │                         C-- KERNEL LAYER                                        │    │
+│  │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌────────────────┐   │    │
+│  │  │   C--    │─▶│  LLVM    │─▶│  MLIR    │─▶│   PTX    │  │  SPIR-V /      │   │    │
+│  │  │  Kernel  │  │    IR    │  │ Dialect  │  │  (NVIDIA)│  │  Verilog /     │   │    │
+│  │  │  (C--)   │  │          │  │          │  │          │  │  Chisel (FPGA) │   │    │
+│  │  └──────────┘  └──────────┘  └──────────┘  └──────────┘  └────────────────┘   │    │
+│  └─────────────────────────────────────────────────────────────────────────────────┘    │
+│                                                                         │                │
+│                                                                         ▼                │
+│  ┌─────────────────────────────────────────────────────────────────────────────────┐    │
+│  │                    VERIFICATION BACKBONE                                        │    │
+│  │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌────────────────────┐   │    │
+│  │  │  CodeQL/     │  │    ASP       │  │  Prolog      │  │  PRISM Skills      │   │    │
+│  │  │  Datalog     │  │  (Clingo)    │  │  Policies    │  │  (Canonical JSON,  │   │    │
+│  │  │  Meta-Val    │  │  Stable      │  │  (Solver     │  │   WORM Sealing)    │   │    │
+│  │  │              │  │  Models      │  │   Dispatch)  │  │                    │   │    │
+│  │  └──────────────┘  └──────────────┘  └──────────────┘  └────────────────────┘   │    │
+│  └─────────────────────────────────────────────────────────────────────────────────┘    │
+│                                                                         │                │
+│                                                                         ▼                │
+│  ┌─────────────────────────────────────────────────────────────────────────────────┐    │
+│  │                    HARDWARE LOWERING                                            │    │
+│  │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌────────────────┐   │    │
+│  │  │  Clash   │  │  Verilog │  │  Chisel  │  │  PTX     │  │  SPIR-V        │   │    │
+│  │  │ (Haskell │  │  (FPGA/  │  │  (Scala) │  │  (NVIDIA)│  │  (Vulkan/      │   │    │
+│  │  │  → HDL)  │  │  ASIC)   │  │  (FPGA)  │  │  (GPU)   │  │  Compute)      │   │    │
+│  │  └──────────┘  └──────────┘  └──────────┘  └──────────┘  └────────────────┘   │    │
+│  └─────────────────────────────────────────────────────────────────────────────────┘    │
+│                                                                         │                │
+│                                                                         ▼                │
+│  ┌─────────────────────────────────────────────────────────────────────────────────┐    │
+│  │                    WORM RECEIPT CHAIN                                           │    │
+│  │  source.sha256 → binary.sha256 → manifest.json → seal.sha256 (Merkle)          │    │
+│  └─────────────────────────────────────────────────────────────────────────────────┘    │
+│                                                                                         │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+```
+
 1. **Notation**: Concise APL code (e.g., `SumSquares ← { (+/ (⍳⍵) * 2) }`).
 2. **Refinement**: Liquid Haskell ensures type safety and generates proof obligations.
-3. **Formal Proof**: Lean 4 proves mathematical equivalence (e.g., $\sum k^2 = \frac{n(n+1)(2n+1)}{6}$).
-4. **Lowering**: Verified transformation to closed-form expressions.
-5. **Execution**: Compilation to machine code via a trusted proof kernel.
+3. **Formal Proof**: Lean 4 proves mathematical equivalence (e.g., $\sum k^2 = \frac{n(n+1)(2n+1)}{6}$). [**Collatz.lean**](agentos_source/collatz-verification/proofs/Collatz.lean).
+4. **Lowering**: Verified transformation to closed-form expressions. [**verified_kernel.cm**](mathlib5/kernel/verified_kernel.cm).
+5. **Execution**: Compilation to machine code via a trusted proof kernel. [**Bridge.lean**](mathlib5-ffi-bridge/Lean/Bridge.lean).
 
-For a deep dive into the architecture, see [mathlib5/README.md](mathlib5/README.md).
-
----
-
-## Legacy Context (all-apl)
-This project originated as a compact APL refutation of specific proof defects observed in public multiplicity theory implementations. These corrections (Stability, Proof Hashes, Factorization, Domain Boundaries) have been integrated as verification checkpoints within the MATHLIB5 pipeline.
+For a source-based map of what is actually present, see [**EXECUTION_TOPOLOGY.md**](EXECUTION_TOPOLOGY.md) and [**CORE_EXPERIMENT_MAP.md**](CORE_EXPERIMENT_MAP.md).
+For theorem/proof status across the repo, see [**THEOREM_STATUS.md**](THEOREM_STATUS.md).
 
 ---
 
-## Getting Started
+## Repository Structure (Current)
+- **mathlib5/**: The primary symbolic compute stack (includes APL front-end and C-- kernel).
+- **agentos_source/**: largest active preserved implementation tree (APL, Rust, Lean, Fortran).
+- **mathlib5-ffi-bridge/**: Lean/C bridge work.
+- **mathrosetta_source/**: symbolic math/proof emitter tree.
+- **legacy/**: earlier APL corrections and refutations.
+- **snapkitty-shell/**: sovereign shell/runtime support.
+
+---
+
+## 🔧 Quick Start
 ### Prerequisites
 - **Nix** (with Flakes enabled)
-- **Bazel**
-- **Rust** (Stable)
-- **Haskell** (GHC 9.8.2)
+- **Bazel**, **Rust**, **Haskell** (GHC 9.8.2)
 
 ### Build & Test
 ```bash
-cd mathlib5
-nix develop
-bazel build //...
-bazel test //...
+# inspect the real module map first
+open EXECUTION_TOPOLOGY.md
+
+# then enter the module you actually want to build
+cd agentos_source
 ```
 
 ---
 
 **Author:** Ahmad Ali Parr · SnapKitty Collective · 2026
 **WORM Seal:** `eadec100f43df0659666114fcd509f3ddc2a8d9f2ea7dd3c5eb922af4a0336f5`
-
-## Project Legacy Components
-These corrections (originally part of the `all-apl` project) are now integrated as verification checkpoints:
-
-### 1. Stability
-Correct condition: `ρ(T) < 1`. Diagonal gains: `IsContractive gains = max |gains| < 1`.
-
-### 2. Proof Hash
-Structural validation of SHA-256 digest shape (64 hexadecimal characters). Rejects placeholder labels.
-
-### 3. Factorization
-Computes real prime-factor witnesses. Checks: all factors are prime, sorted, and product equals $n$.
-
-### 4. Domain Boundary
-Encodes boundaries as `name lower upper omega cap` and validates via `WithinDomain`.
-
-### 5. Omega Isolation
-Correct isolation: `ω < Ω`. Uses resonance entropy gate: `ε < 0.21`.
-
-### 6. Morphism Composition
-Correct order: `(f∘g)(x) = f(g(x))`.
-
----
-
-## Running Legacy APL
-Load the APL files in the `legacy/apl-corrections/` directory in a Dyalog-compatible session:
-```apl
-]LOAD legacy/apl-corrections/pirtm_stability.apl
-]LOAD legacy/apl-corrections/sovereign_domain.apl
-]LOAD legacy/apl-corrections/omega_isolation.apl
-]LOAD legacy/apl-corrections/zeroproof_substrate.apl
-]LOAD legacy/apl-corrections/morphism_composition.apl
-]LOAD legacy/apl-corrections/run_all.apl
-RunAll ⍬
-```

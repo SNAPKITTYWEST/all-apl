@@ -3,7 +3,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     haskell-nix.url = "github:input-output-hk/haskell.nix";
     lean4.url = "github:leanprover/lean4";
-    apl.url = "github:Dyalog/dyalog"; # or april/apl
+    apl.url = "github:Dyalog/dyalog";
     llvm.url = "github:llvm/llvm-project/release/18.x";
     z3.url = "github:Z3Prover/z3";
     cvc5.url = "github:cvc5/cvc5";

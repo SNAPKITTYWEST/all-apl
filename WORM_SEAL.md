@@ -1,5 +1,18 @@
 # WORM Seal
 
+## Status
+
+This seal document is historical.
+Its manifest was generated for an earlier, much smaller repo shape and does not describe the current working tree.
+
+Use it as a prior-art seal record, not as a current inventory of the repository.
+
+For the current repo layout, see:
+
+- [README.md](C:/Users/jessi/Desktop/all-apl/README.md)
+- [EXECUTION_TOPOLOGY.md](C:/Users/jessi/Desktop/all-apl/EXECUTION_TOPOLOGY.md)
+- [CORE_EXPERIMENT_MAP.md](C:/Users/jessi/Desktop/all-apl/CORE_EXPERIMENT_MAP.md)
+
 Repo:
 
 ```text
