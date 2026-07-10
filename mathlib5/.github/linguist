@@ -20,6 +20,7 @@ target/* linguist-vendored
 *.dll.exp linguist-vendored
 *.dll.lib linguist-vendored
 *.lib linguist-vendored
+*.d linguist-vendored
 
 # Exclude Makefiles from language stats (build artifacts)
 Makefile linguist-vendored
