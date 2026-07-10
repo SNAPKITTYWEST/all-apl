@@ -1,0 +1,12 @@
+python_library(
+    name = "mantraq",
+    srcs = glob(["src/**/*.py"]),
+    visibility = ["//visibility:public"],
+)
+
+py_binary(
+    name = "mantraq_main",
+    srcs = ["src/mantraq.py"],
+    main = "src/mantraq.py",
+    deps = [":mantraq"],
+)

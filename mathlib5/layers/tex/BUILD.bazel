@@ -1,0 +1,16 @@
+haskell_library(
+    name = "tex_printer",
+    srcs = glob(["src/**/*.hs"]),
+    deps = [
+        "//layers/sexpr:sexpr_ast",
+        "@hackage//:HaTeX",
+    ],
+)
+
+# Generates spec.md → PDF via pandoc + xelatex
+genrule(
+    name = "render_spec",
+    srcs = ["//docs:spec.md", ":tex_printer"],
+    outs = ["docs/spec.pdf"],
+    cmd = "pandoc $< -o $@ --pdf-engine=xelatex --filter=$(location :tex_printer)",
+)

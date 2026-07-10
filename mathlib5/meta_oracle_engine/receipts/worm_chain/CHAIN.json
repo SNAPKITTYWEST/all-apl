@@ -1,0 +1,37 @@
+{
+  "modus_ponens": {
+    "valid": true,
+    "status": "VALID",
+    "receipt_hash": "2fb3deddffc3374b1deadc7d1ce036b227b5522c878157d024edba8cb3f5247a"
+  },
+  "modus_tollens": {
+    "valid": true,
+    "status": "VALID",
+    "receipt_hash": "d7174bf75caed7963844814cb0fdfc51c322ba127ffeaf6aa66a7b84af9e70f9"
+  },
+  "syllogism": {
+    "valid": true,
+    "status": "VALID",
+    "receipt_hash": "09dc0ce1650a4ab8e4194ddf6b85c369efe5c7dcb9a09c7162095160d58d7984"
+  },
+  "chrysippus": {
+    "valid": false,
+    "status": "INVALID",
+    "receipt_hash": "0269a2ec94e3ba492182290ff57dbd9c2769cd5eab88a64e2513440e772daa48"
+  },
+  "sorry_detection": {
+    "valid": false,
+    "status": "INVALID",
+    "receipt_hash": "c459b765f928bccec55071290415aa430aa2665ea869a9a488203372ab9928a5"
+  },
+  "p_vs_np_forward_p_subset_np": {
+    "valid": true,
+    "status": "VALID",
+    "receipt_hash": "faafcdfd13e960c94315beea81d29b669aaa478f347a46925fc2375158ae28dc"
+  },
+  "p_vs_np_axiom_bridge": {
+    "valid": true,
+    "status": "VALID",
+    "receipt_hash": "8fb9a9419f64e8d4a470ebcd51df896bf4b2648d2b6eb549c69665dba34622b5"
+  }
+}

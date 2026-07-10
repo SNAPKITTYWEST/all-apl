@@ -1,0 +1,16 @@
+haskell_library(
+    name = "apl_parser",
+    srcs = glob(["src/**/*.hs"]),
+    deps = [
+        "@hackage//:megaparsec",
+        "@hackage//:text",
+        "@hackage//:vector",
+        "//layers/sexpr:sexpr_ast",
+    ],
+)
+
+haskell_test(
+    name = "apl_parser_test",
+    srcs = ["test/ParserSpec.hs"],
+    deps = [":apl_parser", "@hackage//:tasty-hunit", "@hackage//:tasty-quickcheck"],
+)

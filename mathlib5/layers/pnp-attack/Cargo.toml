@@ -1,0 +1,19 @@
+[package]
+name = "pnp-attack"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+description = "P vs NP proof search coordinator with WORM ledger"
+
+[[bin]]
+name = "pnp-attack"
+path = "src/coordinator.rs"
+
+[dependencies]
+sha2.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+
+[profile.release]
+opt-level = 3
+lto = true

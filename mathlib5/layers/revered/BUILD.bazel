@@ -1,0 +1,12 @@
+load("@rules_haskell//haskell:defs.bzl", "haskell_library")
+
+haskell_library(
+    name = "revered",
+    srcs = glob(["src/**/*.hs"]),
+    deps = [
+        "@hackage//:base",
+        "@hackage//:text",
+        "@hackage//:containers",
+    ],
+    visibility = ["//visibility:public"],
+)

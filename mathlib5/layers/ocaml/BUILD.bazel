@@ -1,0 +1,8 @@
+ocaml_library(
+    name = "asp_bridge",
+    srcs = glob(["src/**/*.ml"]),
+    deps = [
+        "@opam//:unix",
+    ],
+    visibility = ["//visibility:public"],
+)

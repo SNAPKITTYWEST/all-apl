@@ -1,0 +1,723 @@
+{
+  "total": 79,
+  "refuted": 0,
+  "by_difficulty": {
+    "linear": 42,
+    "quantifier": 15,
+    "unknown": 16,
+    "algebraic": 6
+  },
+  "results": [
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\layers\\millennium\\lean\\Millennium\\All.lean",
+      "line": 53,
+      "difficulty": "linear",
+      "goal": "-- The key insight: many \"sorry\" statements in formalizations are",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\layers\\millennium\\lean\\Millennium\\BirchSwinnertonDyer.lean",
+      "line": 38,
+      "difficulty": "linear",
+      "goal": "theorem bsdRankZero (E : EllipticCurve \u211a) (h : E.mordellWeilGroup.rank = 0) :",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\layers\\millennium\\lean\\Millennium\\BirchSwinnertonDyer.lean",
+      "line": 43,
+      "difficulty": "linear",
+      "goal": "theorem bsdRankOne (E : EllipticCurve \u211a) (h : E.mordellWeilGroup.rank = 1) :",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\layers\\millennium\\lean\\Millennium\\BirchSwinnertonDyer.lean",
+      "line": 59,
+      "difficulty": "quantifier",
+      "goal": "theorem bsdForData (D : BSDData) :",
+      "strategy": "quantifier",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\layers\\millennium\\lean\\Millennium\\BirchSwinnertonDyer.lean",
+      "line": 68,
+      "difficulty": "quantifier",
+      "goal": "theorem mordellWeil (E : EllipticCurve \u211a) :",
+      "strategy": "quantifier",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\layers\\millennium\\lean\\Millennium\\BirchSwinnertonDyer.lean",
+      "line": 73,
+      "difficulty": "unknown",
+      "goal": "theorem torsionFinite (E : EllipticCurve \u211a) :",
+      "strategy": "structural",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\layers\\millennium\\lean\\Millennium\\Hodge.lean",
+      "line": 34,
+      "difficulty": "quantifier",
+      "goal": "theorem hodgeConjectureCurves (C : AlgebraicGeometry.Curve) :",
+      "strategy": "quantifier",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\layers\\millennium\\lean\\Millennium\\Hodge.lean",
+      "line": 40,
+      "difficulty": "quantifier",
+      "goal": "theorem hodgeConjectureAbelian (A : AlgebraicGeometry.AbelianVariety) :",
+      "strategy": "quantifier",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\layers\\millennium\\lean\\Millennium\\Hodge.lean",
+      "line": 56,
+      "difficulty": "quantifier",
+      "goal": "theorem hodgeForData (H : HodgeData) :",
+      "strategy": "quantifier",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\layers\\millennium\\lean\\Millennium\\NavierStokes.lean",
+      "line": 58,
+      "difficulty": "quantifier",
+      "goal": "theorem smoothnessIdentity (u : \u211d \u00d7 \u211d \u00d7 \u211d \u2192 \u211d \u00d7 \u211d \u00d7 \u211d)",
+      "strategy": "quantifier",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\layers\\millennium\\lean\\Millennium\\NavierStokes.lean",
+      "line": 67,
+      "difficulty": "linear",
+      "goal": "theorem navierStokesSmooth : NavierStokesMillennium := by",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\layers\\millennium\\lean\\Millennium\\NavierStokes.lean",
+      "line": 69,
+      "difficulty": "linear",
+      "goal": "theorem navierStokesSmooth : NavierStokesMillennium := by",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\layers\\millennium\\lean\\Millennium\\Poincare.lean",
+      "line": 40,
+      "difficulty": "unknown",
+      "goal": "theorem poincareConjectureProof : PoincareConjecture := by",
+      "strategy": "structural",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\layers\\millennium\\lean\\Millennium\\Poincare.lean",
+      "line": 53,
+      "difficulty": "quantifier",
+      "goal": "theorem ricciFlowCompute (M : SmoothManifoldWithCorners \u211d (EuclideanSpace \u211d (Fin",
+      "strategy": "quantifier",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\layers\\millennium\\lean\\Millennium\\Poincare.lean",
+      "line": 70,
+      "difficulty": "linear",
+      "goal": "theorem millenniumStatus :",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\layers\\millennium\\lean\\Millennium\\Poincare.lean",
+      "line": 72,
+      "difficulty": "linear",
+      "goal": "theorem millenniumStatus :",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\layers\\millennium\\lean\\Millennium\\Poincare.lean",
+      "line": 74,
+      "difficulty": "linear",
+      "goal": "theorem millenniumStatus :",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\layers\\millennium\\lean\\Millennium\\PvsNP.lean",
+      "line": 66,
+      "difficulty": "quantifier",
+      "goal": "theorem noCompressionBound :",
+      "strategy": "quantifier",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\layers\\millennium\\lean\\Millennium\\PvsNP.lean",
+      "line": 75,
+      "difficulty": "quantifier",
+      "goal": "have hcomp : PolyCompressor := by",
+      "strategy": "quantifier",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\layers\\millennium\\lean\\Millennium\\PvsNP.lean",
+      "line": 89,
+      "difficulty": "linear",
+      "goal": "theorem cookLevin : NPComplete satProblem := by",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\layers\\millennium\\lean\\Millennium\\PvsNP.lean",
+      "line": 92,
+      "difficulty": "linear",
+      "goal": "theorem cookLevin : NPComplete satProblem := by",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\layers\\millennium\\lean\\Millennium\\PvsNP.lean",
+      "line": 96,
+      "difficulty": "linear",
+      "goal": "theorem threeSatNPComplete : NPComplete threeSatProblem := by",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\layers\\millennium\\lean\\Millennium\\RiemannHypothesis.lean",
+      "line": 44,
+      "difficulty": "linear",
+      "goal": "theorem zetaReflectiveIdentity (s : \u2102) (h : 1 < s.re) :",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\layers\\millennium\\lean\\Millennium\\RiemannHypothesis.lean",
+      "line": 54,
+      "difficulty": "linear",
+      "goal": "theorem riemannHypothesisProof : RiemannHypothesis := by",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\layers\\millennium\\lean\\Millennium\\RiemannHypothesis.lean",
+      "line": 57,
+      "difficulty": "quantifier",
+      "goal": "theorem riemannHypothesisProof : RiemannHypothesis := by",
+      "strategy": "quantifier",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\layers\\millennium\\lean\\Millennium\\RiemannHypothesis.lean",
+      "line": 64,
+      "difficulty": "quantifier",
+      "goal": "theorem hardyLittlewood :",
+      "strategy": "quantifier",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\layers\\millennium\\lean\\Millennium\\RiemannHypothesis.lean",
+      "line": 71,
+      "difficulty": "quantifier",
+      "goal": "theorem conreyBound :",
+      "strategy": "quantifier",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\layers\\millennium\\lean\\Millennium\\YangMills.lean",
+      "line": 66,
+      "difficulty": "unknown",
+      "goal": "theorem massGapForData (D : YangMillsData) :",
+      "strategy": "structural",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\layers\\millennium\\lean\\Millennium\\YangMills.lean",
+      "line": 77,
+      "difficulty": "quantifier",
+      "goal": "theorem yangMills2DMassGap :",
+      "strategy": "quantifier",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\layers\\millennium\\lean\\Millennium\\YangMills.lean",
+      "line": 84,
+      "difficulty": "quantifier",
+      "goal": "theorem yangMills3DMassGap :",
+      "strategy": "quantifier",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\layers\\millennium\\lean\\Millennium\\YangMills.lean",
+      "line": 91,
+      "difficulty": "quantifier",
+      "goal": "theorem yangMills4DMassGap :",
+      "strategy": "quantifier",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\meta_oracle_engine\\lean\\MetaOracle.lean",
+      "line": 28,
+      "difficulty": "unknown",
+      "goal": "/-- Check if any step contains 'sorry' -/",
+      "strategy": "structural",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\meta_oracle_engine\\lean\\MetaOracle.lean",
+      "line": 29,
+      "difficulty": "unknown",
+      "goal": "def containsSorry (proof : Proof) : Bool :=",
+      "strategy": "structural",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\meta_oracle_engine\\lean\\MetaOracle.lean",
+      "line": 32,
+      "difficulty": "unknown",
+      "goal": "lit.containsSubstr \"sorry\"",
+      "strategy": "structural",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\meta_oracle_engine\\lean\\MetaOracle.lean",
+      "line": 43,
+      "difficulty": "linear",
+      "goal": "/-- Validate complete proof: no sorry + valid structure + has empty clause -/",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\meta_oracle_engine\\lean\\MetaOracle.lean",
+      "line": 58,
+      "difficulty": "linear",
+      "goal": "!containsSorry proof && validateStructure proof",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Closer.lean",
+      "line": 2,
+      "difficulty": "unknown",
+      "goal": "-- SorryDB/Closer.lean \u2014 Automated sorry-closing kernel",
+      "strategy": "structural",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Closer.lean",
+      "line": 27,
+      "difficulty": "linear",
+      "goal": "-- Core: Attempt to close a sorry",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Closer.lean",
+      "line": 30,
+      "difficulty": "linear",
+      "goal": "def attemptClose (entry : SorryEntry) : m (Option String) := do",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Closer.lean",
+      "line": 66,
+      "difficulty": "linear",
+      "goal": "def tryTactic (entry : SorryEntry) (tactic : String) : m (Option String) := do",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Closer.lean",
+      "line": 76,
+      "difficulty": "linear",
+      "goal": "def tryFFIKernel (entry : SorryEntry) : m (Option String) := do",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Closer.lean",
+      "line": 97,
+      "difficulty": "linear",
+      "goal": "def tryTacticChain (entry : SorryEntry) (tactics : List String) : m (Option Stri",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Closer.lean",
+      "line": 106,
+      "difficulty": "linear",
+      "goal": "def tryTypeCheck (entry : SorryEntry) (proofTerm : String) : m Bool := do",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Closer.lean",
+      "line": 115,
+      "difficulty": "linear",
+      "goal": "def closeFileSorries (filePath : String) : m (Array (SorryEntry \u00d7 Option String)",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Closer.lean",
+      "line": 117,
+      "difficulty": "linear",
+      "goal": "let mut results : Array (SorryEntry \u00d7 Option String) := #[]",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Closer.lean",
+      "line": 130,
+      "difficulty": "algebraic",
+      "goal": "logInfo m!\"=== MATHLIB5 Sorry Closer ===\"",
+      "strategy": "algebraic",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Closer.lean",
+      "line": 131,
+      "difficulty": "linear",
+      "goal": "logInfo m!\"Scanning for sorry statements...\"",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Dashboard.lean",
+      "line": 2,
+      "difficulty": "unknown",
+      "goal": "-- SorryDB/Dashboard.lean \u2014 Live sorry-closing progress",
+      "strategy": "structural",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Dashboard.lean",
+      "line": 31,
+      "difficulty": "algebraic",
+      "goal": "\u2551  MATHLIB5 SORRY DASHBOARD                         \u2551",
+      "strategy": "algebraic",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Dashboard.lean",
+      "line": 45,
+      "difficulty": "linear",
+      "goal": "\u2551  Status:         {if state.totalClosed == state.totalFound then \"ALL SORRYS CL",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Dashboard.lean",
+      "line": 49,
+      "difficulty": "linear",
+      "goal": "-- Command: #sorry_dashboard",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Dashboard.lean",
+      "line": 52,
+      "difficulty": "unknown",
+      "goal": "elab \"#sorry_dashboard\" : command => do",
+      "strategy": "structural",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Dashboard.lean",
+      "line": 68,
+      "difficulty": "unknown",
+      "goal": "-- Command: #sorry_progress",
+      "strategy": "structural",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Dashboard.lean",
+      "line": 71,
+      "difficulty": "algebraic",
+      "goal": "elab \"#sorry_progress\" : command => do",
+      "strategy": "algebraic",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Dashboard.lean",
+      "line": 72,
+      "difficulty": "algebraic",
+      "goal": "logInfo m!\"=== SORRY PROGRESS ===\"",
+      "strategy": "algebraic",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Scanner.lean",
+      "line": 2,
+      "difficulty": "unknown",
+      "goal": "-- SorryDB/Scanner.lean \u2014 Scan Lean projects for sorry statements",
+      "strategy": "structural",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Scanner.lean",
+      "line": 3,
+      "difficulty": "unknown",
+      "goal": "-- Tracks every sorry ever made, feeds them to the closing kernel",
+      "strategy": "structural",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Scanner.lean",
+      "line": 15,
+      "difficulty": "linear",
+      "goal": "structure SorryEntry where",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Scanner.lean",
+      "line": 22,
+      "difficulty": "linear",
+      "goal": "difficulty  : SorryDifficulty",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Scanner.lean",
+      "line": 23,
+      "difficulty": "linear",
+      "goal": "status      : SorryStatus",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Scanner.lean",
+      "line": 26,
+      "difficulty": "linear",
+      "goal": "inductive SorryDifficulty where",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Scanner.lean",
+      "line": 34,
+      "difficulty": "unknown",
+      "goal": "| medium    -- Requires a few tactics or lemma lookup",
+      "strategy": "structural",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Scanner.lean",
+      "line": 42,
+      "difficulty": "linear",
+      "goal": "| medium    -- Requires a few tactics or lemma lookup",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Scanner.lean",
+      "line": 45,
+      "difficulty": "linear",
+      "goal": "| medium    -- Requires a few tactics or lemma lookup",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Scanner.lean",
+      "line": 46,
+      "difficulty": "linear",
+      "goal": "| medium    -- Requires a few tactics or lemma lookup",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Scanner.lean",
+      "line": 50,
+      "difficulty": "linear",
+      "goal": "variable [Monad m] [MonadState SorryRegistry m]",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Scanner.lean",
+      "line": 56,
+      "difficulty": "linear",
+      "goal": "def scanFile (path : String) : m (Array SorryEntry) := do",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Scanner.lean",
+      "line": 59,
+      "difficulty": "linear",
+      "goal": "let mut sorries : Array SorryEntry := #[]",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Scanner.lean",
+      "line": 63,
+      "difficulty": "linear",
+      "goal": "-- Match sorry keyword (not in comments or strings)",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Scanner.lean",
+      "line": 64,
+      "difficulty": "linear",
+      "goal": "if line.containsSubstr \"sorry\" && !line.trim.startsWith \"--\" then",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Scanner.lean",
+      "line": 65,
+      "difficulty": "linear",
+      "goal": "let entry : SorryEntry := {",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Scanner.lean",
+      "line": 68,
+      "difficulty": "linear",
+      "goal": "column := line.indexOf \"sorry\" |>.toNat",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Scanner.lean",
+      "line": 91,
+      "difficulty": "algebraic",
+      "goal": "def classifyDifficulty (line : String) : SorryDifficulty :=",
+      "strategy": "algebraic",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Scanner.lean",
+      "line": 94,
+      "difficulty": "algebraic",
+      "goal": "if lower.containsSubstr \"sorry\" && lower.containsSubstr \"theorem\" then",
+      "strategy": "algebraic",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Scanner.lean",
+      "line": 114,
+      "difficulty": "linear",
+      "goal": "let mut totalSorries : Array SorryEntry := #[]",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Scanner.lean",
+      "line": 123,
+      "difficulty": "linear",
+      "goal": "logInfo m!\"Found {totalSorries.size} sorry statements\"",
+      "strategy": "qf_lra",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Scanner.lean",
+      "line": 139,
+      "difficulty": "unknown",
+      "goal": "-- Command: #sorry_status",
+      "strategy": "structural",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Scanner.lean",
+      "line": 142,
+      "difficulty": "unknown",
+      "goal": "elab \"#sorry_status\" : command => do",
+      "strategy": "structural",
+      "status": "OPEN",
+      "model": {}
+    },
+    {
+      "file": "C:\\Users\\jessi\\Desktop\\all-apl\\mathlib5\\sorrydb\\Scanner.lean",
+      "line": 143,
+      "difficulty": "unknown",
+      "goal": "logInfo m!\"=== MATHLIB5 Sorry Status ===\"",
+      "strategy": "structural",
+      "status": "OPEN",
+      "model": {}
+    }
+  ]
+}

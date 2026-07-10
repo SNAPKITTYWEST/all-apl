@@ -1,0 +1,24 @@
+{
+  "tx_id": "bifrost-65be2f912e8615b5-1783664461",
+  "status": "VALID",
+  "proof_hash": "sha256:65be2f912e8615b59d4c0756145b497cdfb906991d16ddbf1c9764f048316ce4",
+  "timestamp": 1783664461.0735977,
+  "kernel_result": {
+    "prolog": {
+      "valid": true,
+      "status": "PYTHON_FALLBACK_VALID",
+      "detail": "Structural check passed"
+    },
+    "kernel": {
+      "valid": true
+    },
+    "structure": {
+      "has_empty": true,
+      "has_sorry": false
+    }
+  },
+  "lean_result": null,
+  "neural_result": null,
+  "seal": "Ed25519:eb0d9fa52818e3bb6d07b734d4b7cdc768a411c404c188e4b6751b1a55761fe0110a00de523818dc89921ea3234f326b6d4a2b320ce54124976aae8649a12904",
+  "chain_prev": "c9fdf22c81fc21e63c17608e860bef2377cfaa4561ab124d864d3cfaa619ce87"
+}

@@ -1,0 +1,38 @@
+module MathLib5.Examples.SumSquares {
+
+theorem SumSquares (n : Nat) :
+  Σ[k=1..n] k² ≡ n * (n + 1) * (2 * n + 1) / 6
+  := by
+  have h_base : Σ[k=1..0] k² = 0 := by norm_num
+  have h_inductive : ∀ n : Nat, Σ[k=1..n+1] k² = Σ[k=1..n] k² + (n+1)² := by
+    intro n
+    rw [show Σ[k=1..n+1] k² = Σ[k=1..n] k² + (n+1)² by
+      simp [Finset.sum_range_succ, Nat.pow_succ]
+      <;> ring]
+  induction n with
+  | zero => norm_num [h_base]
+  | succ n ih =>
+    rw [h_inductive n]
+    rw [ih]
+    ring_nf
+    <;> norm_num
+    <;> linarith
+
+function square (x : Int) : Int := x * x
+
+kernel MatrixMultiply :
+  { target = LLVM,
+    vectorize = AVX512,
+    verify = { overflow = false, precision = fp64 },
+    layout = row_major,
+    precision = fp64 }
+
+-- Quantum example
+function bellState () : QuantumState[2] :=
+  let q0 = q0 in
+  let q1 = q1 in
+  H(q0);
+  CNOT(q0, q1);
+  entangle(q0, q1)
+
+}

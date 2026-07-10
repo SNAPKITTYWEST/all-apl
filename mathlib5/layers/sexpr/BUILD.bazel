@@ -1,0 +1,12 @@
+haskell_library(
+    name = "sexpr_ast",
+    srcs = glob(["src/**/*.hs"]),
+    deps = ["@hackage//:aeson", "@hackage//:hashable"],
+)
+
+# Canonical pretty-printer + equality checker
+haskell_binary(
+    name = "sexpr_normalize",
+    main = "Main.hs",
+    deps = [":sexpr_ast"],
+)

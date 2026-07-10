@@ -1,0 +1,7 @@
+# Modus Tollens: P→Q, ¬Q, P ⊢ □ (refutation of ¬P)
+# Axioms: ~P|Q, ~Q, P
+0 ~P Q
+1 ~Q
+2 P
+3 ~P from 0 1
+4 from 2 3

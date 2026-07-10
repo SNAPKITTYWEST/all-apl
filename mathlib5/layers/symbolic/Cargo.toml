@@ -1,0 +1,17 @@
+[package]
+name = "mathlib5-symbolic"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+description = "MathIR AST, Normalizer TRS, Dispatcher, MetaOracle, MALICE, MantraQ"
+
+[lib]
+name = "mathlib5_symbolic"
+path = "src/lib.rs"
+crate-type = ["lib", "cdylib", "staticlib"]
+
+[dependencies]
+sha2.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+hex.workspace = true

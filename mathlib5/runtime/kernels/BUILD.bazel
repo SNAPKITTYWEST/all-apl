@@ -1,0 +1,7 @@
+# Verified kernels (placeholder)
+package(default_visibility = ["//visibility:public"])
+
+filegroup(
+    name = "verified_kernels",
+    srcs = glob(["**/*.c", "**/*.h"]),
+)

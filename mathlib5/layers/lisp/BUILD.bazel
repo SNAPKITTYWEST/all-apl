@@ -1,0 +1,10 @@
+load("@rules_haskell//haskell:defs.bzl", "haskell_library")
+
+haskell_library(
+    name = "lisp_glue",
+    srcs = glob(["src/**/*.lisp"]),
+    deps = [
+        "@hackage//:base",
+    ],
+    visibility = ["//visibility:public"],
+)

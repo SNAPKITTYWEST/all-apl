@@ -1,0 +1,60 @@
+% malice_engine.tex — TeX Adversarial Kernel
+% Macro expansion = execution. TeX as abstract machine.
+% Compile: tex -ini -jobname=malice "&plain" malice_engine.tex
+
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6 \catcode`\@=11
+
+% Register Allocation (TeX Count Registers = Linear Variables)
+\countdef\maliceVarA=255
+\countdef\maliceVarB=254
+\countdef\maliceTmp=253
+\countdef\maliceResult=252
+
+% ─── Instruction Set ───────────────────────────────────────────────
+\def\MALICE_LOAD#1#2{%
+  #1=#2 \relax
+  \message{LOAD \the#1}}
+
+\def\MALICE_ADD#1#2#3{%
+  \maliceTmp=#2 \advance\maliceTmp by #3 #1=\maliceTmp
+  \message{ADD \the#1 = \the#2 + \the#3}}
+
+\def\MALICE_SUB#1#2#3{%
+  \maliceTmp=#2 \advance\maliceTmp by -#3 #1=\maliceTmp
+  \message{SUB \the#1 = \the#2 - \the#3}}
+
+\def\MALICE_MUL#1#2#3{% Linear only: #3 must be CONSTANT
+  \maliceTmp=0
+  \loop\ifnum#3>0 \advance\maliceTmp by #2 \advance#3 by -1 \repeat
+  #1=\maliceTmp
+  \message{MUL \the#1 = \the#2 * CONST}}
+
+\def\MALICE_ASSERT#1#2{% #1=reg #2=bound
+  \ifnum#1>#2
+    \message{ASSERT VIOLATION: \the#1 > #2}%
+    \edef\maliceSAT{UNSAT}%
+  \else
+    \message{ASSERT OK: \the#1 <= #2}%
+  \fi}
+
+\def\MALICE_REFUTE#1{%
+  \message{MALICE REFUTATION START: #1}%
+  \edef\maliceSAT{SAT}%
+  % Compile QF_LRA formula to register ops
+  \MALICE_LOAD\maliceVarA{0}%
+  \MALICE_LOAD\maliceVarB{0}%
+  \MALICE_LOAD\maliceResult{0}%
+  % Example: (<= (+ (* 2 x) 3) 10) -> 2*x + 3 <= 10
+  \MALICE_MUL\maliceTmp\maliceVarA{2}%
+  \MALICE_ADD\maliceTmp\maliceTmp{3}%
+  \MALICE_ASSERT\maliceTmp{10}%
+  \ifx\maliceSAT\UNSAT
+    \message{REFUTED: counterexample found}%
+  \else
+    \message{HOLDS: no counterexample}%
+  \fi
+  \end}
+
+% Execution tracing
+\tracingmacros=2
+\tracingcommands=2

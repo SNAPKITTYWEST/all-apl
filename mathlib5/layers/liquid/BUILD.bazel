@@ -1,0 +1,18 @@
+# Liquid Haskell requires a special toolchain; we use a macro
+liquid_haskell_library(
+    name = "refinement_types",
+    srcs = glob(["src/**/*.lhs"]), # .lhs = Literate Haskell + LH annotations
+    deps = [
+        "//layers/sexpr:sexpr_ast",
+        "@hackage//:liquid-base",
+        "@hackage//:liquid-containers",
+    ],
+    lh_flags = ["--no-termination-check", "--exact-data-cons"],
+)
+
+# Proof obligations discharged to Lean via FFI
+haskell_library(
+    name = "lh_to_lean_bridge",
+    srcs = ["src/Bridge.hs"],
+    deps = [":refinement_types", "//layers/hol:lean_ffi"],
+)

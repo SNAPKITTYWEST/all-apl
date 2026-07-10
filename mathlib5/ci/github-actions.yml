@@ -1,0 +1,22 @@
+# ci/github-actions.yml
+name: MATHLIB5 CI
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: cachix/install-nix-action@v27
+      - run: nix develop -c bazel build //...
+      - run: nix develop -c bazel test //tests/...
+  benchmark:
+    runs-on: self-hosted # needs bare-metal for perf
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+      - uses: cachix/install-nix-action@v27
+      - run: nix develop -c bazel run //ci:benchmark -- --output=bench.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: benchmarks
+          path: bench.json
