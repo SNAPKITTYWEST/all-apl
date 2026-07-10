@@ -1,14 +1,19 @@
 # MATHLIB5 — Verified Symbolic Compute Pipeline
 
-**The Final Architecture: APL → Rust Kernel → C99 FOL Checker → CodeQL Meta-Validator → ASP Stable Models → Prolog Policies → PRISM Skills → P/NP Swarm**
-
-**Author: Ahmad Ali Parr — SNAPKITTYWEST**
+**The Massive Module: Verified Symbolic Compute from Notation to Silicon**
 
 ---
 
-## What This Is
+## Overview
+MATHLIB5 is a **verified symbolic compute pipeline** that translates APL notation into verified kernels. It provides a compiler-research-grade architecture where APL provides mathematical expression, typed functional languages provide safety guarantees, theorem provers validate transformations, and a low-level backend executes verified kernels.
 
-MATHLIB5 is a **verified symbolic compute pipeline** that translates APL notation into verified kernels. It uses ASP/Prolog/C as the verification backbone, C99 for FOL resolution checking, CodeQL (Datalog) for meta-validation, Rust for the proof kernel and all core components. **Zero Python. Zero bashisms. Pure sovereign compute.**
+---
+
+## Key Components
+- **APL Front-end**: Parser and type-checker for mathematical notation.
+- **Verification Bridge**: Liquid Haskell and Lean 4 integration for formal proofs.
+- **Proof Kernel**: Trusted C99/Rust kernels for execution.
+- **Symbolic IR**: Canonical S-expression AST.
 
 ---
 
@@ -33,73 +38,55 @@ From SNAPKITTYWEST/mathrosetta and SNAPKITTYWEST/snapkitty-agentos, we cherry-pi
 
 | Metric | Value |
 |--------|-------|
-| Rust tests | **71 passing** across 7 crates |
-| FOL theorems | **15/15 verified** (13ms/proof) |
-| Sorries tracked | **38** (1 closed: Bridge.hs) |
-| Millennium problems | 17 sorries across 7 Clay problems |
-| Sorries closed | 1 (Bridge.hs) |
-| Pipeline status | **BUILDING** |
+| **Core Architecture** | VSCP (Verified Symbolic Compute Pipeline) |
+| **Primary Language** | Haskell / Lean 4 / Rust / C99 |
+| **Formal Proofs** | Lean 4 (induction, ring, omega) |
+| **Front-end** | APL (Megaparsec) |
+| **Status** | **ACTIVE DEVELOPMENT** |
+| **Module Scope** | Massive |
 
 ---
 
-## Directory Structure
+## Repository Layout (Monorepo)
 
 ```
 mathlib5/
-├── Cargo.toml                    # Rust workspace (7 crates)
-├── kernel/                       # Trusted proof kernel (C99)
-│   ├── kernel.h                  # CIC, de Bruijn, arena, type checking
-│   └── kernel.c
-├── compiler/lexer/               # APL tokenizer (C99)
-│   ├── lexer.h
-│   └── lexer.c
+├── flake.nix             # Nix flake: pinned dependencies
+├── WORKSPACE.bazel       # Bazel workspace: multi-language build
 ├── layers/
-│   ├── axiom-proof/              # AXIOM Proof Assistant (Rust)
-│   ├── prism-skills/             # PRISM Canonical Skills (Rust)
-│   ├── pnp-attack/               # P/NP Proof Search (Rust)
-│   ├── collatz/                  # Collatz Verification (Rust)
-│   ├── math-skills/              # 6 Mathematical Skills
-│   ├── engine/                   # Math Engine (APL/Fortran)
-│   ├── fol/                      # FOL Resolution Checker (C99)
-│   ├── asp/                      # ASP Stable Model Gate
-│   ├── codeql/                   # CodeQL Meta-Validator
-│   ├── millennium/               # 7 Clay Problems (Lean 4)
-│   ├── sorryhunter/              # Automated Sorry Closer (Rust)
-│   ├── rexx-interp/              # REXX Interpreter (Rust)
-│   ├── scripting/                # R/REXX/PowerShell/POSIX sh
-│   │   ├── r/                    # 4 R scripts
-│   │   ├── rexx/                 # 4 REXX scripts
-│   │   ├── powershell/           # 2 PowerShell scripts
-│   │   └── sh/                   # 7 POSIX sh scripts
-│   ├── dsspeed/                  # Fortran Hyper DSSPEED
-│   ├── sorryhunter/              # Automated Sorry Closer
-│   └── rexx-interp/              # REXX Interpreter
-├── kernel/                       # C99 trusted kernel
-├── compiler/                     # APL compiler frontend
-├── spec/MATHLIB5.bnf            # APL Surface Syntax (EBNF)
-├── examples/playground/          # KaTeX/MathQuill frontend
-└── symbolic/                     # Symbolic policies
+│   ├── apl/              # APL Front-end (Haskell)
+│   ├── sexpr/            # Symbolic IR (Haskell)
+│   ├── liquid/           # Liquid Haskell Refinements
+│   ├── hol/              # HOL / Lean 4 Theorem Proving
+│   ├── closedform/       # Closed-Form Rewrite Engine
+│   ├── backend/          # LLVM/MLIR Backend
+│   └── isb/              # Logic-Gate Lowering (Verilog)
+├── runtime/              # Verified Kernels (C99/Rust)
+├── compiler/             # APL Compiler Frontend (C99)
+├── kernel/               # Trusted Proof Kernel (C99)
+├── tests/                # Integration & Unit Tests
+└── spec/                 # Formal Specifications (BNF)
 ```
 
 ---
 
-## Build
+## Build System
 
-### Rust Workspace (7 crates)
+### Nix Development Shell
+```bash
+nix develop
+```
+
+### Bazel Build
+```bash
+bazel build //...
+bazel test //...
+```
+
+### Rust Workspace
 ```bash
 cargo build --release
 cargo test
-```
-
-### C99 Kernel & FOL Checker
-```bash
-cd kernel && gcc -O3 -o kernel kernel.c
-cd layers/fol/src && gcc -O3 -o fol_check fol_resolution_checker.c && ./fol_check
-```
-
-### Fortran DSSPEED
-```bash
-cd layers/dsspeed && gfortran -O3 dsspeed.f90 -o dsspeed
 ```
 
 ---

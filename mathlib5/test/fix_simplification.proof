@@ -1,0 +1,5 @@
+# Theorem 6: Simplification (clean)
+0 P
+1 Q
+2 ~P
+3 from 0 2

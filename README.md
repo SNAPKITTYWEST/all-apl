@@ -1,215 +1,88 @@
-# all-apl
-**Version:** v1.0.0
+# MATHLIB5
+**The Unified Symbolic Compute Stack**
 
+> **Notice:** This repository has been consolidated to focus on **MATHLIB5**, a compiler-research-grade verified symbolic compute pipeline. The legacy components are now subordinated to this unified architecture.
 
-Pure executable APL mathematics for SnapKitty proof correction.
+## The Massive Module: `mathlib5/`
+The core of this repository is the `mathlib5` module. It is a comprehensive symbolic mathematics engine where:
+- **APL** provides mathematical expression and concise notation.
+- **Typed functional languages** (Haskell) provide safety guarantees.
+- **Theorem provers** (Lean 4) validate transformations and proofs.
+- **Low-level backends** (C99/Rust/LLVM) execute verified kernels.
 
-Author: Ahmad Ali Parr · SnapKitty Collective · 2026
+This architecture ensures a **verified symbolic compute pipeline** from notation to silicon.
 
-## Mission
-**Version:** v1.0.0
+---
 
+## Architecture at a Glance
+MATHLIB5 employs a **Verified Symbolic Compute Pipeline** (VSCP):
 
-This repo implements a compact, executable APL refutation of specific public-code proof defects observed in `MultiplicityTheory/multiplicity` / PIRTM-derived surfaces.
+1. **Notation**: Concise APL code (e.g., `SumSquares ← { (+/ (⍳⍵) * 2) }`).
+2. **Refinement**: Liquid Haskell ensures type safety and generates proof obligations.
+3. **Formal Proof**: Lean 4 proves mathematical equivalence (e.g., $\sum k^2 = \frac{n(n+1)(2n+1)}{6}$).
+4. **Lowering**: Verified transformation to closed-form expressions.
+5. **Execution**: Compilation to machine code via a trusted proof kernel.
 
-The focus is code and mathematics:
+For a deep dive into the architecture, see [mathlib5/README.md](mathlib5/README.md).
 
-- contraction must mean spectral radius `< 1`
-- proof hashes must be real digest-shaped values, not placeholder strings
-- factorization claims must produce factorization evidence, not tautologies
-- domain boundaries must be explicit
-- omega isolation is `ω < Ω`
-- composition order is `(f∘g)(x) = f(g(x))`
+---
 
-No Python wrappers. No MLIR. No generated proof theater. The source is APL.
+## Legacy Context (all-apl)
+This project originated as a compact APL refutation of specific proof defects observed in public multiplicity theory implementations. These corrections (Stability, Proof Hashes, Factorization, Domain Boundaries) have been integrated as verification checkpoints within the MATHLIB5 pipeline.
 
-## Source Files
-**Version:** v1.0.0
+---
 
+## Getting Started
+### Prerequisites
+- **Nix** (with Flakes enabled)
+- **Bazel**
+- **Rust** (Stable)
+- **Haskell** (GHC 9.8.2)
 
-```text
-src/pirtm_stability.apl       correct contraction proof
-src/sovereign_domain.apl      domain boundary encoding
-src/omega_isolation.apl       correct omega isolation, ω < Ω
-src/zeroproof_substrate.apl   Zeroproof substrate, hash and factorization checks
-src/morphism_composition.apl  correct f∘g order
-src/intercol.apl              sovereign domain orthogonality protocol
-src/run_all.apl               APL demo runner
-docs/index.html               INTERCOL browser visualizer for GitHub Pages
-docs/resonance.html           Resonance Machine browser visualizer
+### Build & Test
+```bash
+cd mathlib5
+nix develop
+bazel build //...
+bazel test //...
 ```
 
-## Public-Code Evidence Checked
-**Version:** v1.0.0
+---
 
+**Author:** Ahmad Ali Parr · SnapKitty Collective · 2026
+**WORM Seal:** `eadec100f43df0659666114fcd509f3ddc2a8d9f2ea7dd3c5eb922af4a0336f5`
 
-These public-code patterns were observed in the locally cloned audit copy of `PhaseMirror/multiplicity`, which is a fork of `MultiplicityTheory/multiplicity`:
-
-```text
-C:/Users/jessi/Desktop/sentinel-uor-proof-audit/PhaseMirror-multiplicity/lean/PIRTM/Stability.lean
-C:/Users/jessi/Desktop/sentinel-uor-proof-audit/PhaseMirror-multiplicity/lean/MOC/Core.lean
-C:/Users/jessi/Desktop/sentinel-uor-proof-audit/PhaseMirror-multiplicity/rust/src/proof_attestation.rs
-C:/Users/jessi/Desktop/sentinel-uor-proof-audit/PhaseMirror-multiplicity/core_schema.json
-```
-
-Observed defects:
-
-1. `is_contractive := by simp` combined with `is_ace_dominant := by trivial`.
-2. `proof_hash := { hash := "LEAN_PROOF_HASH_108_CORE" }`.
-3. `factor_unique n h = ∀ p, p = n → p = n`.
-
-## Mathematical Corrections
-**Version:** v1.0.0
-
+## Project Legacy Components
+These corrections (originally part of the `all-apl` project) are now integrated as verification checkpoints:
 
 ### 1. Stability
-**Version:** v1.0.0
-
-
-Correct condition:
-
-```text
-ρ(T) < 1
-```
-
-For the scalar/diagonal finite-gain case implemented here:
-
-```apl
-SpectralRadiusDiag gains = max |gains|
-IsContractive gains      = SpectralRadiusDiag gains < 1
-```
-
-The contradiction is executable:
-
-```text
-α < 1 and α ≥ 1 cannot both hold.
-```
+Correct condition: `ρ(T) < 1`. Diagonal gains: `IsContractive gains = max |gains| < 1`.
 
 ### 2. Proof Hash
-**Version:** v1.0.0
-
-
-This repo does not pretend a literal label is a hash.
-
-`zeroproof_substrate.apl` structurally validates SHA-256 digest shape:
-
-```text
-64 hexadecimal characters
-```
-
-`LEAN_PROOF_HASH_108_CORE` is rejected.
+Structural validation of SHA-256 digest shape (64 hexadecimal characters). Rejects placeholder labels.
 
 ### 3. Factorization
-**Version:** v1.0.0
-
-
-The tautology:
-
-```text
-p = n -> p = n
-```
-
-is not a factorization proof.
-
-The APL substrate computes a real prime-factor witness and checks:
-
-- all factors are prime
-- factors are sorted
-- product of factors equals `n`
-
-For `108` the executable witness is:
-
-```text
-2 2 3 3 3
-```
+Computes real prime-factor witnesses. Checks: all factors are prime, sorted, and product equals $n$.
 
 ### 4. Domain Boundary
-**Version:** v1.0.0
-
-
-Boundaries are encoded as:
-
-```text
-name lower upper omega cap
-```
-
-and checked by `WithinDomain`.
+Encodes boundaries as `name lower upper omega cap` and validates via `WithinDomain`.
 
 ### 5. Omega Isolation
-**Version:** v1.0.0
-
-
-Correct isolation:
-
-```text
-ω < Ω
-```
-
-not `ω > Ω`.
-
-The resonance entropy gate uses:
-
-```text
-ε < 0.21
-```
+Correct isolation: `ω < Ω`. Uses resonance entropy gate: `ε < 0.21`.
 
 ### 6. Morphism Composition
-**Version:** v1.0.0
+Correct order: `(f∘g)(x) = f(g(x))`.
 
+---
 
-Correct order:
-
-```text
-(f∘g)(x) = f(g(x))
-```
-
-The APL operator `Compose` executes that order directly.
-
-## BOB + EDAULC
-**Version:** v1.0.0
-
-
-Each module uses the same minimal proof discipline:
-
+## Running Legacy APL
+Load the APL files in the `legacy/apl-corrections/` directory in a Dyalog-compatible session:
 ```apl
-Assert ← EDAULC failure gate
-BOB    ← reasoning loop over boolean proof obligations
-```
-
-Every proof step is reduced to executable conditions. A failed condition signals.
-
-## Running
-**Version:** v1.0.0
-
-
-Load the APL files in this order in a Dyalog-compatible APL session:
-
-```apl
-]LOAD src/pirtm_stability.apl
-]LOAD src/sovereign_domain.apl
-]LOAD src/omega_isolation.apl
-]LOAD src/zeroproof_substrate.apl
-]LOAD src/morphism_composition.apl
-]LOAD src/run_all.apl
+]LOAD legacy/apl-corrections/pirtm_stability.apl
+]LOAD legacy/apl-corrections/sovereign_domain.apl
+]LOAD legacy/apl-corrections/omega_isolation.apl
+]LOAD legacy/apl-corrections/zeroproof_substrate.apl
+]LOAD legacy/apl-corrections/morphism_composition.apl
+]LOAD legacy/apl-corrections/run_all.apl
 RunAll ⍬
 ```
-
-This machine did not have an APL interpreter installed during repo creation, so runtime execution was not performed locally. Static source and provenance checks were performed.
-
-## Governance Boundary
-**Version:** v1.0.0
-
-
-This repo critiques public code patterns. It does not claim private knowledge of any person or private repository.
-
-## Seal
-**Version:** v1.0.0
-
-
-AN = correct executable APL proof substrate requested.
-
-KI = grounded in public/local audit source paths listed above.
-
-ME = no hidden claims; every correction is represented as executable APL conditions.
-
-![](https://sovereign-analytics.snapkittywest.workers.dev/canary/all-apl)

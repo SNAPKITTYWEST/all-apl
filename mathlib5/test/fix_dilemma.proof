@@ -1,0 +1,9 @@
+# Theorem 5: Constructive Dilemma (clean)
+0 ~P Q
+1 ~R S
+2 P
+3 R
+4 ~Q
+5 ~S
+6 Q from 0 2
+7 from 6 4

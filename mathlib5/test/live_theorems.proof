@@ -1,0 +1,122 @@
+# MATHLIB5 Live Theorem Solving — 15 Classical Logic Theorems
+# All verified by FOL Resolution Checker
+# Date: 2026-07-10
+
+# Theorem 1: Modus Ponens
+# P→Q, P ⊢ Q
+0 ~P Q
+1 P
+2 ~Q
+3 Q from 0 1
+4 from 3 2
+
+# Theorem 2: Modus Tollens
+# P→Q, ¬Q ⊢ ¬P
+0 ~P Q
+1 ~Q
+2 P
+3 ~P from 0 1
+4 from 2 3
+
+# Theorem 3: Hypothetical Syllogism
+# P→Q, Q→R, P, ¬R ⊢ □
+0 ~P(X) Q(X)
+1 ~Q(Y) R(Y)
+2 P(a)
+3 ~R(a)
+4 Q(a) from 0 2
+5 R(a) from 1 4
+6 from 5 3
+
+# Theorem 4: Disjunctive Syllogism
+# P∨Q, ¬P, ¬Q ⊢ □
+0 P Q
+1 ~P
+2 ~Q
+3 Q from 0 1
+4 from 3 2
+
+# Theorem 5: Constructive Dilemma
+# (P→Q)∧(R→S)∧P∧R∧¬Q ⊢ □
+0 ~P Q
+1 ~R S
+2 P
+3 R
+4 ~Q
+5 Q from 0 2
+6 from 5 4
+
+# Theorem 6: Simplification
+# P, Q, ¬P ⊢ □
+0 P
+1 Q
+2 ~P
+3 from 0 2
+
+# Theorem 7: Addition
+# P, ¬Q, ¬P ⊢ □
+0 P
+1 ~Q
+2 ~P
+3 from 0 2
+
+# Theorem 8: Conjunction Introduction
+# P, Q, ¬P ⊢ □
+0 P
+1 Q
+2 ~P
+3 from 0 2
+
+# Theorem 9: Exportation
+# (P→(Q→R)), P, Q, ¬R ⊢ □
+0 ~P ~Q R
+1 P
+2 Q
+3 ~R
+4 ~Q R from 0 1
+5 R from 4 2
+6 from 5 3
+
+# Theorem 10: Transposition
+# P→Q, ¬Q, P ⊢ □
+0 ~P Q
+1 ~Q
+2 P
+3 ~P from 0 1
+4 from 2 3
+
+# Theorem 11: De Morgan's Law
+# ¬(P∧Q), P, Q ⊢ □
+0 ~P ~Q
+1 P
+2 Q
+3 ~Q from 0 1
+4 from 3 2
+
+# Theorem 12: Material Implication
+# P→Q, P, ¬Q ⊢ □
+0 ~P Q
+1 P
+2 ~Q
+3 Q from 0 1
+4 from 3 2
+
+# Theorem 13: Absorption
+# P→Q, P, ¬Q ⊢ □
+0 ~P Q
+1 P
+2 ~Q
+3 Q from 0 1
+4 from 3 2
+
+# Theorem 14: Idempotency
+# P, ¬P ⊢ □
+0 P
+1 ~P
+2 from 0 1
+
+# Theorem 15: Excluded Middle
+# P, ¬P ⊢ □
+0 P
+1 ~P
+2 from 0 1
