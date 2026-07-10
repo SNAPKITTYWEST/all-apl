@@ -23,7 +23,8 @@ $repos = @(
     "mathrosetta_source/",
     "snapkitty-gitbucket/",
     "snapkitty-shell/",
-    "mathlib5-ffi-bridge/"
+    "mathlib5-ffi-bridge/",
+    "solarium/"
 )
 
 $timestamp = Get-Date -Format "yyyyMMdd"
@@ -90,6 +91,10 @@ foreach ($repoPath in $repos) {
     if ($repoPath -like "*math-skills*" -or $repoPath -like "*qec*" -or $repoPath -like "*resonance*") {
         $familyId = 11
         $corporaPath = "corpora/formal_research/math_skills/"
+    }
+    if ($repoPath -like "*solarium*") {
+        $familyId = 12
+        $corporaPath = "corpora/knowledge_base/solarium_mcp/"
     }
 
     $metadata = @{

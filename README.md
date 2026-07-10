@@ -74,6 +74,7 @@ For theorem/proof status across the repo, see [**THEOREM_STATUS.md**](THEOREM_ST
 - **agentos_source/**: largest active preserved implementation tree (APL, Rust, Lean, Fortran).
 - **mathlib5-ffi-bridge/**: Lean/C bridge work.
 - **mathrosetta_source/**: symbolic math/proof emitter tree.
+- **solarium/**: Semantic knowledge base and MCP server (Qdrant).
 - **legacy/**: earlier APL corrections and refutations.
 - **snapkitty-shell/**: sovereign shell/runtime support.
 

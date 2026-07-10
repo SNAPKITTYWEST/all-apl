@@ -12,6 +12,7 @@ The repo keeps major experiments in separate top-level trees instead of forcing 
 - `mathlib5/` carries the primary VSCP implementation (APL parser, C-- kernel, Lean 4 proofs)
 - `mathlib5-ffi-bridge/` carries proof/system bridge work
 - `mathrosetta_source/` carries symbolic emission and theorem-targeting work
+- `solarium/` carries the semantic knowledge base and MCP server (Qdrant)
 - `legacy/` preserves earlier APL and prior-art material
 
 ### 2. Documentation Maps
@@ -33,6 +34,7 @@ The system is operated and verified by a collective of specialized AI agent pers
 - **VAULT**: Memory & Persistence. Manages the WORM ledger and skill persistence.
 - **ORACLE**: Problem Analysis & Proof Scaffolding. Analyzes complexity (P/NP) and structures theorems.
 - **NEXUS**: Swarm Coordination. Orchestrates the pipeline and compiles agent context.
+- **SOLARIUM**: Semantic Knowledge Management (MCP/Qdrant). Provides the memory and document retrieval layer for the swarm.
 
 ## Documentation Rules
 
