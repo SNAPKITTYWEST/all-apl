@@ -1,0 +1,143 @@
+{
+  "_meta": {
+    "author": "Ahmad Ali Parr · SnapKitty Collective · 2026",
+    "version": "1.0.0",
+    "description": "INTERCOL UI state model — feeds Swift/C++ simulation core from APL transform layer"
+  },
+
+  "runtime": {
+    "vm_mode": "RESONANCE",
+    "entropy_level": 0.21,
+    "active_gate": "ERE phinary entropy gate",
+    "semantic_agreement": 0.0,
+    "context_shedding_active": false,
+    "worm_chain_length": 0,
+    "metatron_depth": 5
+  },
+
+  "trust_vector": {
+    "_axes": 7,
+    "coherence": 0.0,
+    "provenance": 0.0,
+    "reversibility": 0.0,
+    "consent": 0.0,
+    "auditability": 0.0,
+    "semantic_alignment": 0.0,
+    "contradiction_resistance": 0.0,
+    "_note": "EDAULC non-binary trust — each axis 0.0–1.0, not a boolean"
+  },
+
+  "ere_passes": [
+    { "id": 1, "name": "Structural coherence",      "score": 0.0, "status": "pending" },
+    { "id": 2, "name": "Internal consistency",       "score": 0.0, "status": "pending" },
+    { "id": 3, "name": "Causal chain integrity",     "score": 0.0, "status": "pending" },
+    { "id": 4, "name": "Entropy measurement",        "score": 0.0, "status": "pending" },
+    { "id": 5, "name": "Phinary contraction",        "score": 0.0, "status": "pending" }
+  ],
+
+  "entropy_gate": {
+    "threshold": 0.21,
+    "current": 0.0,
+    "state": "closed",
+    "_states": ["closed", "open", "failed"]
+  },
+
+  "metatron_nodes": [
+    { "id": 0,  "role": "SOURCE",       "depth": 0.0,  "type": "primary",    "trust": 0.0, "resonance": 0.0 },
+    { "id": 1,  "role": "QUANTUM_SRC",  "depth": 0.5,  "type": "constraint", "trust": 0.0, "resonance": 0.0 },
+    { "id": 2,  "role": "RETRIEVAL",    "depth": 1.0,  "type": "primary",    "trust": 0.0, "resonance": 0.0 },
+    { "id": 3,  "role": "LEAN4_GATE",   "depth": 2.5,  "type": "constraint", "trust": 0.0, "resonance": 0.0 },
+    { "id": 4,  "role": "FILTERING",    "depth": 2.0,  "type": "primary",    "trust": 0.0, "resonance": 0.0 },
+    { "id": 5,  "role": "ADA_CONTRACT", "depth": 2.5,  "type": "constraint", "trust": 0.0, "resonance": 0.0 },
+    { "id": 6,  "role": "RANKING",      "depth": 3.0,  "type": "primary",    "trust": 0.0, "resonance": 0.0 },
+    { "id": 7,  "role": "WORM_SEAL",    "depth": 3.5,  "type": "constraint", "trust": 0.0, "resonance": 0.0 },
+    { "id": 8,  "role": "PROLOG_KERN",  "depth": 3.5,  "type": "constraint", "trust": 0.0, "resonance": 0.0 },
+    { "id": 9,  "role": "ASSEMBLY",     "depth": 4.0,  "type": "primary",    "trust": 0.0, "resonance": 0.0 },
+    { "id": 10, "role": "METATRON",     "depth": 5.0,  "type": "center",     "trust": 0.0, "resonance": 0.0,
+      "_note": "reads ALL nodes forward AND backward — the cage builder" },
+    { "id": 11, "role": "REASONING",    "depth": 5.0,  "type": "primary",    "trust": 0.0, "resonance": 0.0 },
+    { "id": 12, "role": "MAGMACORE",    "depth": 6.0,  "type": "primary",    "trust": 0.0, "resonance": 0.0 }
+  ],
+
+  "metatron_edges": [
+    { "from": "SOURCE",      "to": "RETRIEVAL",    "type": "forward",  "resonance": 0.0 },
+    { "from": "RETRIEVAL",   "to": "FILTERING",    "type": "forward",  "resonance": 0.0 },
+    { "from": "FILTERING",   "to": "RANKING",      "type": "forward",  "resonance": 0.0 },
+    { "from": "RANKING",     "to": "ASSEMBLY",     "type": "forward",  "resonance": 0.0 },
+    { "from": "ASSEMBLY",    "to": "METATRON",     "type": "forward",  "resonance": 0.0 },
+    { "from": "METATRON",    "to": "REASONING",    "type": "forward",  "resonance": 0.0 },
+    { "from": "REASONING",   "to": "MAGMACORE",    "type": "forward",  "resonance": 0.0 },
+    { "from": "MAGMACORE",   "to": "METATRON",     "type": "backward", "resonance": 0.0 },
+    { "from": "METATRON",    "to": "SOURCE",       "type": "backward", "resonance": 0.0 },
+    { "from": "LEAN4_GATE",  "to": "FILTERING",    "type": "constraint","resonance": 0.0 },
+    { "from": "ADA_CONTRACT","to": "FILTERING",    "type": "constraint","resonance": 0.0 },
+    { "from": "WORM_SEAL",   "to": "RANKING",      "type": "constraint","resonance": 0.0 },
+    { "from": "PROLOG_KERN", "to": "RANKING",      "type": "constraint","resonance": 0.0 },
+    { "from": "QUANTUM_SRC", "to": "SOURCE",       "type": "constraint","resonance": 0.0 }
+  ],
+
+  "worm_receipts": [],
+  "worm_receipt_schema": {
+    "action_id": "string — UUID",
+    "agent_id": "string",
+    "entropy_level": "float — must be < 0.21 to seal",
+    "trust_vector": "object — 7-axis EDAULC vector",
+    "semantic_agreement": "float 0.0–1.0",
+    "timestamp": "ISO 8601",
+    "state_hash": "SHA-256 hex",
+    "worm_seal": "string — 16-char hex slice of SHA-256",
+    "ere_passes": "array — 5 pass scores",
+    "append_only": true,
+    "_ui_note": "no delete button. operations: append | verify | replay only"
+  },
+
+  "claims": [],
+  "claim_schema": {
+    "claim_id": "string",
+    "agent_id": "string",
+    "predicate": "string",
+    "evidence_reference": "string — WORM receipt action_id or external URL",
+    "verification_status": "unverified | verified | contradicted | insufficient_evidence",
+    "contradiction_flag": false,
+    "confidence_score": "float 0.0–1.0"
+  },
+
+  "events": [],
+  "event_types": [
+    "agent_join", "agent_speak", "proposal_created", "vote_cast",
+    "worm_seal_appended", "contradiction_detected", "context_shed",
+    "resonance_stabilized", "entropy_gate_open", "entropy_gate_failed",
+    "metatron_certified", "ere_pass_complete"
+  ],
+
+  "context_shedding": {
+    "retained": [],
+    "discarded": [],
+    "compression_events": [],
+    "semantic_drift_warnings": [],
+    "agreement_loss_threshold": 0.15
+  },
+
+  "intercol_state": {
+    "domain_count": 4,
+    "domains": ["TREASURY", "CLINICAL", "LEGAL", "OPERATIONS"],
+    "last_transition": null,
+    "last_result": null,
+    "null_state_count": 0,
+    "_apl_source": "src/intercol.apl"
+  },
+
+  "demo_sequence": {
+    "name": "Run Metatron 13-Node Resonance",
+    "steps": [
+      { "step": 1, "action": "spawn_nodes",           "description": "Spawn 13 Metatron nodes" },
+      { "step": 2, "action": "assign_trust_vectors",  "description": "Assign each node a trust-vector state" },
+      { "step": 3, "action": "open_entropy_gate",     "description": "Open entropy gate at 0.21" },
+      { "step": 4, "action": "fibonacci_contraction", "description": "Run Fibonacci contraction" },
+      { "step": 5, "action": "semantic_agreement_fold","description": "Execute semantic agreement fold" },
+      { "step": 6, "action": "detect_contradictions", "description": "Detect contradictions" },
+      { "step": 7, "action": "append_worm_receipts",  "description": "Append WORM receipts" },
+      { "step": 8, "action": "display_resonance_seal","description": "Display final resonance seal" }
+    ]
+  }
+}

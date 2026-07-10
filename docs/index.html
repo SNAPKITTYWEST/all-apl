@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>INTERCOL · Sovereign Domain Orthogonality</title>
+  <style>
+    :root {
+      --bg: #020205;
+      --panel: #08080d;
+      --line: #24242f;
+      --soft: #9ca3af;
+      --text: #f4f4f5;
+      --gold: #c9a84c;
+      --green: #00ff88;
+      --red: #ff3333;
+      --blue: #6aa8ff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(201, 168, 76, 0.08), transparent 28rem),
+        linear-gradient(180deg, #020205 0%, #030307 100%);
+      color: var(--text);
+      font-family: "Space Mono", "Cascadia Mono", "Consolas", "Courier New", monospace;
+    }
+
+    a { color: var(--gold); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page {
+      width: min(1500px, 100%);
+      margin: 0 auto;
+      padding: 22px;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: end;
+      padding: 10px 0 22px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      color: var(--gold);
+      font-size: clamp(22px, 4vw, 42px);
+      line-height: 1.05;
+      letter-spacing: 0.02em;
+      font-weight: 800;
+      text-shadow: 0 0 18px rgba(201, 168, 76, 0.24);
+    }
+
+    .subtitle {
+      color: var(--soft);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .source-link {
+      border: 1px solid rgba(201, 168, 76, 0.55);
+      color: var(--gold);
+      padding: 10px 12px;
+      border-radius: 6px;
+      white-space: nowrap;
+      background: rgba(201, 168, 76, 0.06);
+      font-size: 12px;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      padding: 18px 0;
+    }
+
+    label {
+      color: var(--soft);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+    }
+
+    input[type="range"] { accent-color: var(--gold); }
+
+    .pill {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--gold);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+    }
+
+    .main {
+      display: grid;
+      grid-template-columns: minmax(360px, 1fr) minmax(360px, 0.9fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      background: rgba(8, 8, 13, 0.92);
+      border-radius: 8px;
+      min-width: 0;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.35);
+    }
+
+    .panel-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      color: var(--soft);
+      font-size: 12px;
+    }
+
+    .grid-wrap {
+      padding: 14px;
+      overflow: auto;
+    }
+
+    .domain-grid {
+      display: grid;
+      gap: 4px;
+      min-width: fit-content;
+    }
+
+    .cell {
+      width: 52px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #171720;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: transform 0.08s ease, border-color 0.08s ease, background 0.08s ease;
+      user-select: none;
+    }
+
+    .cell:hover {
+      transform: translateY(-1px);
+      border-color: var(--gold);
+    }
+
+    .cell.ok {
+      color: var(--green);
+      background: rgba(0, 255, 136, 0.08);
+    }
+
+    .cell.null {
+      color: var(--red);
+      background: rgba(255, 51, 51, 0.07);
+    }
+
+    .cell.selected {
+      outline: 2px solid var(--gold);
+      outline-offset: 1px;
+    }
+
+    .proof {
+      padding: 16px;
+      min-height: 474px;
+    }
+
+    .proof-title {
+      color: var(--gold);
+      margin-bottom: 12px;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    pre {
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: #d7d7dc;
+      line-height: 1.58;
+      font-size: 13px;
+    }
+
+    .green { color: var(--green); }
+    .red { color: var(--red); }
+    .gold { color: var(--gold); }
+    .blue { color: var(--blue); }
+
+    .strip {
+      margin-top: 18px;
+      border: 1px solid var(--line);
+      background: rgba(8, 8, 13, 0.95);
+      border-radius: 8px;
+      padding: 14px;
+      display: grid;
+      grid-template-columns: auto 110px auto 110px auto auto 1fr;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .strip-title {
+      color: var(--gold);
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      background: #030307;
+      color: var(--text);
+      padding: 9px 10px;
+      font: inherit;
+    }
+
+    button {
+      border: 1px solid rgba(201, 168, 76, 0.65);
+      background: rgba(201, 168, 76, 0.09);
+      color: var(--gold);
+      border-radius: 5px;
+      padding: 10px 12px;
+      font: inherit;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: rgba(201, 168, 76, 0.16);
+    }
+
+    .transition-output {
+      min-height: 38px;
+      border-left: 1px solid var(--line);
+      padding-left: 12px;
+      color: var(--soft);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    footer {
+      color: #555866;
+      font-size: 11px;
+      padding: 20px 2px 6px;
+    }
+
+    @media (max-width: 920px) {
+      header, .main, .strip {
+        grid-template-columns: 1fr;
+      }
+
+      .source-link {
+        width: fit-content;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div>
+        <h1>INTERCOL · Sovereign Domain Orthogonality</h1>
+        <div class="subtitle">SnapKitty Collective · 2026</div>
+      </div>
+      <a class="source-link" href="https://github.com/SNAPKITTYWEST/all-apl/blob/main/src/intercol.apl">src/intercol.apl</a>
+    </header>
+
+    <section class="controls" aria-label="domain controls">
+      <label for="size">N×N domain grid</label>
+      <input id="size" type="range" min="2" max="16" value="8">
+      <span class="pill">N = <span id="sizeValue">8</span></span>
+      <span class="pill"><span class="green">GREEN</span> diagonal = OK</span>
+      <span class="pill"><span class="red">RED</span> off-diagonal = ⊥</span>
+    </section>
+
+    <main class="main">
+      <section class="panel" aria-label="domain grid">
+        <div class="panel-head">
+          <span>Domain grid</span>
+          <span>Each cell [i,j] = INTERCOL(Dᵢ,Dⱼ)</span>
+        </div>
+        <div class="grid-wrap">
+          <div id="grid" class="domain-grid"></div>
+        </div>
+      </section>
+
+      <section class="panel" aria-label="proof output">
+        <div class="panel-head">
+          <span>Live proof output</span>
+          <span>BOB + EDAULC step trace</span>
+        </div>
+        <div class="proof">
+          <div class="proof-title">Selected Cell</div>
+          <pre id="proof"></pre>
+        </div>
+      </section>
+    </main>
+
+    <section class="strip" aria-label="PIRTM transition runner">
+      <div class="strip-title">Try a PIRTM transition</div>
+      <label for="domain">domain</label>
+      <input id="domain" type="number" min="1" step="1" value="1">
+      <label for="codomain">codomain</label>
+      <input id="codomain" type="number" min="1" step="1" value="108">
+      <button id="run">RUN</button>
+      <button id="demo">108-cycle</button>
+      <div id="transitionOutput" class="transition-output"></div>
+    </section>
+
+    <footer>
+      <span>Pure HTML/CSS/JS. APL glyphs render as Unicode.</span>
+      <span><a href="./resonance.html">Resonance Machine</a> · <a href="https://github.com/SNAPKITTYWEST/all-apl">GitHub</a></span>
+    </footer>
+  </div>
+
+  <script>
+    const grid = document.getElementById('grid');
+    const size = document.getElementById('size');
+    const sizeValue = document.getElementById('sizeValue');
+    const proof = document.getElementById('proof');
+    const domainInput = document.getElementById('domain');
+    const codomainInput = document.getElementById('codomain');
+    const runButton = document.getElementById('run');
+    const demoButton = document.getElementById('demo');
+    const transitionOutput = document.getElementById('transitionOutput');
+
+    let selected = [1, 1];
+
+    function basis(index, n) {
+      return Array.from({ length: n }, (_, k) => k + 1 === index ? 1 : 0);
+    }
+
+    function dot(a, b) {
+      return a.reduce((sum, value, index) => sum + value * b[index], 0);
+    }
+
+    function validIndex(index, n) {
+      return Number.isInteger(index) && index >= 1 && index <= n;
+    }
+
+    function intercol(i, j, n) {
+      if (!validIndex(i, n) || !validIndex(j, n)) return 0;
+      return dot(basis(i, n), basis(j, n));
+    }
+
+    function resultLabel(value) {
+      return value === 1 ? 'OK' : '⊥';
+    }
+
+    function vectorText(index, n) {
+      if (!validIndex(index, n)) return `D_${index} = undefined in active ${n}-domain space`;
+      return `D_${index} = [${basis(index, n).join(' ')}]`;
+    }
+
+    function dotSteps(i, j, n) {
+      if (!validIndex(i, n) || !validIndex(j, n)) {
+        return [
+          `Active space: N = ${n}`,
+          vectorText(i, n),
+          vectorText(j, n),
+          '',
+          `INTERCOL(D_${i}, D_${j})`,
+          '= 0',
+          '= ⊥',
+          '',
+          'EDAULC: codomain outside active basis or cross-domain edge',
+          'BOB: transition has no representable edge'
+        ];
+      }
+
+      const a = basis(i, n);
+      const b = basis(j, n);
+      const terms = a.map((value, k) => `${value}×${b[k]}`);
+      const value = dot(a, b);
+      const verdict = resultLabel(value);
+
+      return [
+        `Active space: N = ${n}`,
+        vectorText(i, n),
+        vectorText(j, n),
+        '',
+        `INTERCOL(D_${i}, D_${j}) = D_${i} · D_${j}`,
+        `= ${terms.join(' + ')}`,
+        `= ${value}`,
+        `= ${verdict}`,
+        '',
+        `Kronecker δ_${i}${j} = ${i === j ? 1 : 0}`,
+        value === 1
+          ? 'EDAULC: same-domain diagonal accepted'
+          : 'EDAULC: off-diagonal orthogonality returns Null State',
+        value === 1
+          ? 'BOB: proof step certified'
+          : 'BOB: cross-domain transition collapses to ⊥'
+      ];
+    }
+
+    function showProof(i, j) {
+      const n = Number(size.value);
+      proof.textContent = dotSteps(i, j, n).join('\n');
+    }
+
+    function renderGrid() {
+      const n = Number(size.value);
+      sizeValue.textContent = String(n);
+      grid.innerHTML = '';
+      grid.style.gridTemplateColumns = `repeat(${n}, 52px)`;
+
+      for (let i = 1; i <= n; i += 1) {
+        for (let j = 1; j <= n; j += 1) {
+          const value = intercol(i, j, n);
+          const cell = document.createElement('button');
+          cell.className = `cell ${value === 1 ? 'ok' : 'null'}`;
+          if (selected[0] === i && selected[1] === j) cell.classList.add('selected');
+          cell.type = 'button';
+          cell.innerHTML = value === 1 ? `OK<br>[${i},${j}]` : `⊥<br>[${i},${j}]`;
+          cell.title = `INTERCOL(D_${i}, D_${j}) = ${value}`;
+          cell.addEventListener('click', () => {
+            selected = [i, j];
+            renderGrid();
+            showProof(i, j);
+          });
+          grid.appendChild(cell);
+        }
+      }
+
+      if (selected[0] > n || selected[1] > n) selected = [1, 1];
+      showProof(selected[0], selected[1]);
+    }
+
+    function runTransition() {
+      const n = Number(size.value);
+      const domain = Number(domainInput.value);
+      const codomain = Number(codomainInput.value);
+      const value = intercol(domain, codomain, n);
+      const result = resultLabel(value);
+      const scope = validIndex(domain, n) && validIndex(codomain, n)
+        ? `D_${domain} · D_${codomain}`
+        : `D_${domain} → D_${codomain} outside active basis`;
+
+      transitionOutput.innerHTML = [
+        `<span class="blue">${scope}</span>`,
+        `inner product = <span class="${value === 1 ? 'green' : 'red'}">${value}</span>`,
+        `result = <span class="${value === 1 ? 'green' : 'red'}">${result}</span>`
+      ].join('<br>');
+
+      selected = [
+        validIndex(domain, n) ? domain : 1,
+        validIndex(codomain, n) ? codomain : Math.min(n, Math.max(1, domain))
+      ];
+      renderGrid();
+      proof.textContent = dotSteps(domain, codomain, n).join('\n');
+    }
+
+    size.addEventListener('input', renderGrid);
+    runButton.addEventListener('click', runTransition);
+    demoButton.addEventListener('click', () => {
+      domainInput.value = '1';
+      codomainInput.value = '108';
+      runTransition();
+    });
+
+    renderGrid();
+    runTransition();
+  </script>
+</body>
+</html>
